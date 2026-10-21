@@ -1,36 +1,37 @@
-<title>モンスターテイマー みどり</title>
+<title>ヤドリの灯</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
 <style>
-/* Layout: one handheld "device" centered — screen bezel on top, controls below. Deliberately single dark theme. */
+/* Layout: a lacquered "lantern box" handheld — screen in a vermilion frame, controls below. Deliberately single night theme. */
 :root{
-  --case:#1b2420;      /* device body */
-  --case-hi:#26332d;
-  --ink:#d6e8c4;       /* labels on the case */
-  --ink-dim:#8fa686;
-  --lcd0:#e0f8d0; --lcd3:#081820;
-  --btn:#0f1512;
-  --btn-a:#7a2340;     /* A/B buttons, a muted berry */
-  --bezel:#3a4640;
+  --night:#1c1a29;      /* page / case */
+  --night-hi:#29263b;
+  --frame:#8e3b25;      /* vermilion lacquer frame */
+  --frame-hi:#a9502f;
+  --ink:#f1e3c4;        /* paper-colored labels */
+  --ink-dim:#a89c86;
+  --btn:#121019;
+  --btn-a:#c9822f;      /* amber buttons */
   --font-pixel:"DotGothic16", "Hiragino Kaku Gothic ProN", "Noto Sans JP", monospace;
   color-scheme:dark;
 }
 html,body{height:100%}
-body{background:var(--case);color:var(--ink);font-family:var(--font-pixel);margin:0;
+body{background:var(--night);color:var(--ink);font-family:var(--font-pixel);margin:0;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
   -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 .wrap{max-width:680px;margin:0 auto;padding-block:14px 24px;display:flex;flex-direction:column;gap:14px;align-items:center}
 header{width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-h1{font-size:18px;margin:0;letter-spacing:.08em;font-weight:400}
-h1 span{color:var(--ink-dim);font-size:13px;margin-left:6px}
+h1{font-size:20px;margin:0;letter-spacing:.12em;font-weight:400}
+h1 span{color:var(--ink-dim);font-size:12px;margin-left:8px;letter-spacing:.06em}
 .tools{display:flex;gap:8px}
-.tools button{font:inherit;font-size:12px;color:var(--ink);background:var(--case-hi);border:1px solid var(--bezel);border-radius:6px;padding:4px 10px;cursor:pointer}
+.tools button{font:inherit;font-size:12px;color:var(--ink);background:var(--night-hi);border:1px solid var(--frame);border-radius:6px;padding:4px 10px;cursor:pointer}
 .tools button:focus-visible,.pad button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.bezel{background:var(--bezel);padding:14px 14px 10px;border-radius:10px 10px 34px 10px;width:100%;box-sizing:border-box;max-width:min(680px, calc((100dvh - 250px) * 1.111 + 28px));min-width:min(100%, 300px)}
-.bezel .lbl{font-size:10px;color:var(--ink-dim);letter-spacing:.2em;margin:0 0 6px 4px}
-canvas{display:block;width:100%;height:auto;aspect-ratio:320/288;image-rendering:pixelated;image-rendering:crisp-edges;background:var(--lcd0);border-radius:2px;max-width:100%}
+.frame{background:linear-gradient(var(--frame-hi),var(--frame));padding:12px;border-radius:14px;width:100%;box-sizing:border-box;
+  max-width:min(680px, calc((100dvh - 240px) * 1.111 + 24px));min-width:min(100%, 300px);box-shadow:0 0 40px rgba(201,130,47,.18)}
+.frame .lbl{font-size:10px;color:var(--ink);opacity:.75;letter-spacing:.3em;margin:0 0 8px 2px;display:flex;justify-content:space-between}
+canvas{display:block;width:100%;height:auto;aspect-ratio:320/288;image-rendering:pixelated;image-rendering:crisp-edges;background:#f6ecd2;border-radius:3px;max-width:100%}
 .pad{width:100%;max-width:520px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;touch-action:none}
 .dpad{display:grid;grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,46px)}
 .dpad button,.ab button,.ss button{font:inherit;color:var(--ink);border:none;cursor:pointer;touch-action:none}
@@ -41,22 +42,22 @@ canvas{display:block;width:100%;height:auto;aspect-ratio:320/288;image-rendering
 .dpad .r{grid-column:3;grid-row:2;border-radius:0 6px 6px 0}
 .dpad .d{grid-column:2;grid-row:3;border-radius:0 0 6px 6px}
 .ss{display:flex;gap:10px;justify-content:center;align-self:end;padding-bottom:6px}
-.ss button{background:var(--btn);font-size:10px;letter-spacing:.1em;padding:6px 10px;border-radius:12px}
-.ab{display:flex;gap:12px;transform:rotate(-20deg)}
-.ab button{width:54px;height:54px;border-radius:50%;background:var(--btn-a);font-size:16px}
-.pad button.on{filter:brightness(1.6)}
+.ss button{background:var(--btn);font-size:11px;letter-spacing:.1em;padding:6px 12px;border-radius:12px}
+.ab{display:flex;gap:12px;transform:rotate(-18deg)}
+.ab button{width:54px;height:54px;border-radius:50%;background:var(--btn-a);color:var(--btn);font-size:16px}
+.pad button.on{filter:brightness(1.5)}
 .help{font-size:12px;color:var(--ink-dim);line-height:1.9;text-align:center;max-width:60ch}
-.help kbd{font-family:inherit;color:var(--ink);background:var(--case-hi);border:1px solid var(--bezel);border-radius:4px;padding:0 5px}
+.help kbd{font-family:inherit;color:var(--ink);background:var(--night-hi);border:1px solid var(--frame);border-radius:4px;padding:0 5px}
 @media (max-width:420px){.dpad{grid-template-columns:repeat(3,40px);grid-template-rows:repeat(3,40px)}.ab button{width:48px;height:48px}}
 </style>
 
 <main class="wrap">
   <header>
-    <h1>モンスターテイマー<span>みどりバージョン</span></h1>
+    <h1>ヤドリの灯<span>だいいっしょう ひだまりの村</span></h1>
     <div class="tools"><button id="mute" type="button">おと：オン</button></div>
   </header>
-  <div class="bezel">
-    <p class="lbl">DOT MATRIX WITH STEREO SOUND</p>
+  <div class="frame">
+    <p class="lbl"><span>ともしび がたり</span><span>◆</span></p>
     <canvas id="scr" width="320" height="288" tabindex="0" aria-label="ゲーム画面"></canvas>
   </div>
   <div class="pad" aria-label="コントローラー">
@@ -67,21 +68,21 @@ canvas{display:block;width:100%;height:auto;aspect-ratio:320/288;image-rendering
       <button class="r" data-k="right" aria-label="みぎ">▶</button>
       <button class="d" data-k="down" aria-label="した">▼</button>
     </div>
-    <div class="ss"><button data-k="start" aria-label="スタート">START</button></div>
+    <div class="ss"><button data-k="start" aria-label="メニュー">MENU</button></div>
     <div class="ab"><button data-k="b" aria-label="Bボタン">B</button><button data-k="a" aria-label="Aボタン">A</button></div>
   </div>
-  <p class="help"><kbd>←↑↓→</kbd>/<kbd>WASD</kbd> いどう　<kbd>Z</kbd>/<kbd>Space</kbd> Aボタン　<kbd>X</kbd>/<kbd>Esc</kbd> Bボタン　<kbd>Enter</kbd> メニュー<br>Aボタンを おしっぱなしで もじおくり。 レポート（セーブ）は メニューから。</p>
+  <p class="help"><kbd>←↑↓→</kbd>/<kbd>WASD</kbd> いどう　<kbd>Z</kbd>/<kbd>Space</kbd> けってい・しらべる　<kbd>X</kbd>/<kbd>Esc</kbd> もどる　<kbd>Enter</kbd> メニュー<br>けっていキーを おしっぱなしで もじおくり。 きろくは メニューの「にっき」から。</p>
 </main>
 
 <script>
 'use strict';
 // =====================================================================
-//  モンスターテイマー みどり — a fan-made homage to 1996-era handheld RPGs
-//  All monsters, names, maps and music are original.
+//  ヤドリの灯 — an original island-folklore spirit RPG (chapter 1)
+//  World, spirits, five-element types, story, art and music are all original.
 // =====================================================================
 const cv=document.getElementById('scr'), ctx=cv.getContext('2d');
 const W=320,H=288,TS=32;
-const PAL=['#e0f8d0','#88c070','#346856','#081820'];
+const PAL=['#f6ecd2','#d9a25c','#8b472c','#2a1712'];   // paper, lantern amber, lacquer, ink
 const FONT='16px "DotGothic16", monospace', FONT_S='12px "DotGothic16", monospace', FONT_L='32px "DotGothic16", monospace';
 ctx.imageSmoothingEnabled=false;
 let FR=0;
@@ -213,7 +214,7 @@ const P8={
   grass:['00000000','00000000','01010000','00100000','00000000','00000000','00000101','00000010'],
   tall:['11111111','21111112','12111121','12122121','11211211','21211212','12122121','11111111'],
   path:['00000000','00000000','00001000','00000000','00000000','01000000','00000000','00000010'],
-  water:['11111111','11111111','10011001','01100110','11111111','11111111','11111111','11111111'],
+  water:['22222222','22222222','21122112','12211221','22222222','22222222','22202222','22222222'],
   floor:['00000001','00000001','00000001','00000001','00000001','00000001','00000001','11111111'],
   roof:['22222223','22222223','22222223','33333333','22232222','22232222','22232222','33333333'],
   wall:['00000000','00000000','00000000','11111111','00000000','00000000','00000000','11111111'],
@@ -224,7 +225,15 @@ const P8={
 };
 const TREE=["....33333333....","..331111111133..",".31100111111113.",".31011111111113.","3111111111101113","3111111111011113","3111111111111113","3211111111111123","3221111111111223",".32211111111223.",".33222222222233.","..333322223333..",".....322223.....",".....322223.....","....33222233....","................"];
 const BOULDER=["................",".....333333.....","...3311111133...","..311001111113..",".31101111111113.",".31111111111213.","3111111111112213","3111111111122213","3211111111222223","3221111112222223",".32222222222223.","..332222222233..","....33333333....","................","................","................"];
-const BALL=["................","................","................",".....333333.....","....32222223....","...3222002223...","...3222222223...","...3333003333...","...3000330003...","...3000000003...","....30000003....",".....333333.....","................","................","................","................"];
+// items lying on the ground: a small furoshiki bundle
+const BUNDLE=["................","................","......3..3......",".....3.33.3.....","......3333......","....33222233....","...3222112223...","...3221111223...","...3222222223...","...3221221223...","....32222223....",".....333333.....","................","................","................","................"];
+// the binding thread spool (thrown in battle)
+const SPOOL=["................","................","................","................","....33333333....","....32222223....",".....311113.....",".....310013.....",".....311113.....",".....310013.....",".....311113.....","....32222223....","....33333333....","................","................","................"];
+// small paper lantern resting on the table
+const KOCHOCHIN=["................","................","................","......3333......",".......33.......",".....333333.....","....30000003....","....31111113....","....30000003....","....31111113....","....30000003....",".....333333.....",".......33.......","................","................","................"];
+const COIN=["................","................",".....333333.....","...3311111133...","..311111111113..","..311133331113..","..311130031113..","..311130031113..","..311133331113..","..311111111113..","...3311111133...",".....333333.....","................","................","................","................"];
+const TORII=["................","3333333333333333",".32222222222223.","..333333333333..","...32......23...","..333333333333..","...32......23...","...32......23...","...32......23...","...32......23...","...32......23...","...32......23...","..3333....3333..","................","................","................"];
+const LANTERN_ROWS=[".......33.......","......3223......","....33333333....","..333333333333..","....32222223....","....3xxxxxx3....","....3xxxxxx3....","....3xxxxxx3....","....33333333....","......3223......","......3223......","......3223......",".....322223.....","...3333333333...","...3222222223...","...3333333333..."];
 const G=tile8(P8.grass), FLOOR=tile8(P8.floor), WALL=tile8(P8.wall);
 const TILES={
   '.':[G], ',':[tile8(P8.tall)], '=':[tile8(P8.path)],
@@ -232,30 +241,32 @@ const TILES={
   '*':[layer(tile8(P8.flowA)),layer(tile8(P8.flowB))],
   'T':[layer(G,TREE)],
   'R':[tile8(P8.roof)], 'W':[WALL], 'K':[tile8(P8.rock)],
-  'w':[layer(WALL,p=>{p(3,3,10,9,3);p(4,4,8,7,2);p(4,4,8,1,1);p(5,5,2,2,0);p(7,4,2,7,3);p(4,7,8,1,3);})],
-  'D':[layer(WALL,p=>{p(2,1,12,15,3);p(3,2,10,14,2);p(4,3,8,5,1);p(4,3,8,1,0);p(7,3,2,5,3);p(11,10,1,2,0);})],
-  'P':[layer(WALL,p=>{p(1,2,14,11,3);p(2,3,12,9,0);p(7,4,2,7,3);p(4,6,8,3,3);p(7,5,2,5,2);p(5,7,6,1,2);})],
-  'M':[layer(WALL,p=>{p(1,2,14,11,3);p(2,3,12,9,1);p(4,5,1,5,3);p(11,5,1,5,3);p(5,6,1,1,3);p(6,7,1,1,3);p(7,8,2,1,3);p(9,7,1,1,3);p(10,6,1,1,3);})],
-  'G':[layer(tile8(P8.rock),p=>{p(1,2,14,11,3);p(2,3,12,9,0);p(5,5,6,1,3);p(4,6,1,4,3);p(5,10,6,1,3);p(10,8,1,2,3);p(8,8,2,1,3);})],
+  'w':[layer(WALL,p=>{p(3,3,10,9,3);p(4,4,8,7,1);p(4,4,8,1,0);p(7,4,2,7,3);p(4,7,8,1,3);})],
+  'D':[layer(WALL,p=>{p(2,1,12,15,3);p(3,2,10,14,2);p(3,2,10,2,1);p(7,2,2,14,3);p(5,9,1,2,0);p(10,9,1,2,0);})],
+  'P':[layer(WALL,p=>{p(6,1,4,1,3);p(7,0,2,1,3);p(4,2,8,10,3);p(5,3,6,8,0);p(5,5,6,1,1);p(5,8,6,1,1);p(6,12,4,2,3);})], // やすらぎ堂: hanging lantern
+  'M':[layer(WALL,COIN)],                     // よろず屋: old coin
+  'G':[layer(tile8(P8.rock),TORII)],          // 社: torii gate
   'F':[layer(G,p=>{[2,11].forEach(x=>{p(x,3,3,12,3);p(x+1,4,1,10,0);});p(0,5,16,3,3);p(0,6,16,1,1);p(0,10,16,3,3);p(0,11,16,1,1);[2,11].forEach(x=>{p(x,5,3,3,3);p(x+1,6,1,1,0);p(x,10,3,3,3);p(x+1,11,1,1,0);});})],
   'S':[layer(G,p=>{p(1,2,14,9,3);p(2,3,12,7,1);p(3,4,10,1,0);p(4,6,8,1,2);p(4,8,6,1,2);p(7,11,2,5,3);})],
   'L':[layer(G,p=>{p(0,9,16,1,2);p(0,10,16,2,3);for(let x=0;x<16;x+=4)p(x+1,12,2,1,3);p(0,12,16,1,2);p(0,13,16,1,1);})],
+  'O':[layer(G,LANTERN_ROWS.map(r=>r.replace(/x/g,'3')))],
   '#':[tile8(P8.iwall)],
   '_':[FLOOR], 'X':[layer(p=>p(0,0,16,16,3))],
   'b':[layer(p=>{p(0,0,16,16,3);p(1,1,14,6,2);p(1,9,14,6,2);for(let i=0;i<4;i++){p(2+i*3,2,2,5,i%2?0:1);p(2+i*3,10,2,5,i%2?1:0);}})],
   't':[layer(FLOOR,p=>{p(0,1,16,13,3);p(1,2,14,10,1);p(1,2,14,2,0);p(1,14,2,2,3);p(13,14,2,2,3);})],
-  'v':[layer(FLOOR,p=>{p(1,1,14,11,3);p(3,3,10,7,1);p(4,4,3,2,0);p(5,12,6,3,3);})],
+  'v':[layer(FLOOR,p=>{p(2,3,12,10,3);p(3,4,10,8,2);p(4,5,3,3,1);p(9,5,3,3,1);p(4,10,8,1,0);p(7,1,1,2,3);})],   // radio
   'c':[layer(p=>{p(0,0,16,16,1);p(0,0,16,4,0);p(0,4,16,1,3);p(0,15,16,1,3);p(0,8,16,1,2);})],
-  'h':[layer(FLOOR,p=>{p(0,2,16,14,3);p(1,3,14,12,2);[2,6,10].forEach(x=>{p(x,5,4,4,0);p(x,7,4,1,3);});p(2,11,12,2,1);})],
-  'p':[layer(FLOOR,p=>{p(2,1,12,10,3);p(3,2,10,7,1);p(4,3,3,2,0);p(6,11,4,1,3);p(1,12,14,3,3);p(2,13,12,1,1);})],
+  'h':[layer(FLOOR,p=>{p(1,4,14,12,3);p(2,5,12,10,2);p(0,3,16,2,3);p(3,1,10,2,3);p(6,7,4,5,1);p(7,8,2,3,0);})],   // altar
+  'p':[layer(FLOOR,p=>{p(4,1,8,14,3);p(5,2,6,12,1);p(6,4,4,1,2);p(6,7,4,1,2);p(6,10,4,1,2);p(3,14,10,2,3);})],     // ことづて石
   'm':[layer(FLOOR,p=>{p(1,4,14,10,2);p(1,6,14,1,1);p(1,10,14,1,1);p(1,4,14,1,3);p(1,13,14,1,3);})],
   'B':[layer(FLOOR,BOULDER)],
 };
-const SOLID=new Set('TFSLRWwPMGK#bvtchpBX~'.split(''));
-const IMG_BALL=sprite(BALL);
+const LANTERN_LIT=[layer(G,LANTERN_ROWS.map((r,y)=>r.replace(/x/g,()=>y%2?'1':'0'))),layer(G,LANTERN_ROWS.map((r,y)=>r.replace(/x/g,()=>y%2?'0':'1')))];
+const SOLID=new Set('TFSLRWwPMGKO#bvtchpBX~'.split(''));
+const IMG_BUNDLE=sprite(BUNDLE), IMG_SPOOL=sprite(SPOOL), IMG_KOCHO=sprite(KOCHOCHIN);
 const IMG_EMOTE=layer(p=>{p(3,0,10,12,3);p(4,1,8,10,0);p(7,2,2,5,3);p(7,8,2,2,3);p(6,12,3,2,3);});
 
-// --- characters: head variants + body, assembled into 4 directions x walk frames ---
+// --- people: head variants + body, assembled into 4 directions x walk frames ---
 const HEADS={
   cap:{d:[".....333","...33222","..322222","..333333",".3330000",".3303000","..300000","...33000"],
        u:[".....333","...33222","..322222","..322222",".3322222",".3333333","..333333","...33333"],
@@ -286,133 +297,123 @@ function buildChar(head,{coat=false,light=false}={}){
   const Lf=[sprite(sd),sprite(ss),sprite(ss)], Rt=Lf.map(flipH);
   return {down:D,up:U,left:Lf,right:Rt};
 }
-Object.assign(CH,{player:buildChar('cap'),rival:buildChar('spiky'),prof:buildChar('white',{coat:true}),mom:buildChar('long'),
-  girl:buildChar('long',{light:true}),nurse:buildChar('long',{coat:true,light:true}),clerk:buildChar('cap',{coat:true,light:true}),
-  old:buildChar('bald'),boy:buildChar('cap',{light:true}),bug:buildChar('cap',{light:true,coat:true}),hiker:buildChar('bald',{coat:true}),
-  leader:buildChar('spiky',{coat:true}),man:buildChar('spiky',{light:true})});
+Object.assign(CH,{player:buildChar('cap'),rival:buildChar('spiky'),towa:buildChar('white',{coat:true}),mom:buildChar('long'),
+  girl:buildChar('long',{light:true}),keeper:buildChar('long',{coat:true,light:true}),clerk:buildChar('cap',{coat:true,light:true}),
+  old:buildChar('bald'),boy:buildChar('cap',{light:true}),picker:buildChar('cap',{light:true,coat:true}),mason:buildChar('bald',{coat:true}),
+  guardian:buildChar('white'),man:buildChar('spiky',{light:true}),smith:buildChar('bald',{light:true})});
 
-// --- monster art (left half, mirrored) ---
+// --- ヤドリ art (left half, mirrored) ---
 const ART={
- hinokon:[".......3","......32",".3....32",".33..312",".3133111",".3111111","..311111","..313011","..311111","...31112","...33111","..311100",".3111000",".3111000",".3113300","..33..33"],
- hinogitsune:["..3....3",".323..32",".3223.32",".32223.3",".3222333","..311111","..311111",".3113011",".3111111","..311122","..331111",".3111100","32111000","32211000",".3211330","..33..33"],
- mizumogu:["........","........",".....333","...33111","..311111",".3113011",".3111111",".3111113","..311100","..310000",".3310000","31131000","31133000",".33.3000","....3133",".....33."],
- mizurakko:["........","..33....",".3113.33",".3111311","..311111",".3113011",".3111111",".3111222","..311122",".3310000","31110000","31110000",".3310000","..311000",".3113300",".33..33."],
- happaru:[".......3","......32",".33..322",".313.32.",".313..3.",".3113333","..311111","..313011","..311111","...31100","..311000",".3110000",".3110000",".3113000","..333333","........"],
- hanausagi:[".3......","323....3","3223..32",".323.322",".3233333","..311111",".3113011",".3111111",".3112111","..311100",".3110000","31110000","31110000",".3111000","..331133","....33.."],
- nezucchi:["........",".33.....","3113....","3123.333",".3133111","..311111",".3113011",".3111111","..311113","...31100","..311000",".3111000",".3111100","..311133","...33.3.","........"],
- oonezucchi:["33......","313.....","3123..33",".3123311","..311111",".3113011",".3111111",".3111111","..311113","...31130","..311100",".3111000","31111000","31111100",".3333113",".....33."],
- kotorin:["........","........",".....333","....3111","...31111","..311301","..311113","33..3111","31331100","31113100",".3111100","..311100","...31110","....3333",".....3.3","....33.."],
- tsubasao:["......33",".....322","....3223","....3111","...31111","..311301","3.311113","33.31111","313.3111","31133100","31111100",".3111100","..311110","...33333",".....3.3","....33.3"],
- imomu:["........","...3....","...3....","....3333","...31111","..311111","..313011","..311111","..311133","...31111","..322222",".3200202",".3222222","..322222","...33333","........"],
- karakoron:["........","....3333","...32222","..322222","..322222",".3223022",".3222222",".3233333",".3222222",".3222222",".3233333","..322222","..322222","...32222","....3333","........"],
- hirari:["........","........","......3.",".333...3","311133.3","31011133","31111131","31111313",".3111133","..333131",".3111131","31011131","31111131",".3111333","..333.33","........"],
- haribachi:["........",".33....3","3003...3","30003.33","30003311",".333.311","....3130","....3111","...32222","...33333","...32222","...33333","....3222",".....333",".......3","........"],
- pirimaru:["..3.....",".323....",".3223...","..3223..","...33333","..300000",".3000000",".3003000",".3200000",".3000003","..300000","..300000","...33000","....3333","....3.3.","........"],
- pancho:["........","....3333","..332222",".3222222","31120000","31120300",".3200000","..320033","...32222","33.32222","31332222","31112222",".3333222","...32222","...32233","...333.."],
- mimizun:["........","........","........",".....333","....3222","...32222","...32302","...32222","...32220","...32222","..322222","33322222","31112222","31111111","33333333","........"],
- ishikoron:["........","........","....3333","..331111",".3111211",".3112111","31111111","31133111","31130111","31111111","31121133",".3111111","33311111","31333111",".33..333","........"],
- gansekio:["....3333","...31111","..311211",".3111111",".3333111",".3130111",".3111111",".3111133","...33333","3333...3","31113.31","31211331","31111311",".3333111","...31111","....3333"],
+ bonbori:[".......3","......30","......31",".....333","....3222","...31111","..322222","..313011","..311111","..311113","..322222","..311111","...31111","....3222",".....3.3","....33.."],
+ kagaribi:["..3....3",".303..30",".3013.31","..301311","..311111","33333333","32222222","32223022","32222222",".3222233","..322222","3..32222","33.32222",".333.322","....3.32","...33.33"],
+ shizuku:["........","........",".......3","......31",".....311","....3111","...31111","..311111","..311111",".3113011",".3111111",".3111100",".3111000","..311000","...33111","....3333"],
+ mizuchi:["..33....","..323...","...32333","....3111","...31111","..311301","3.311111",".3311122","..311111","...33111","..311000",".3110033",".3100311",".3111100","..331111","....3333"],
+ moegi:["........",".333....","31113...","311113.3",".33333.3","......33","....3333","...30000","..300000","..303000","..300000","..300033","..300000","...30000","....3333",".....3.3"],
+ ookusu:["....3333","..331111",".3111011","31110111","31111111","31111111",".3311111","...33333","....3222","....3232","....3222","....3223","...32222","..322222",".3223322","33.3..33"],
+ kesaran:["........","...3.3.3","..301000",".3000000","30000100",".3000000","30003000",".3000000","30000001",".3001000","30000000",".3000010","..300000","...3.3.3","........","........"],
+ chagama:["........",".33.....","3113.333","31113222",".3332222","..300000",".3033000",".3000000",".3000003","33222222","3.322222","3.322222","33322222","..322222","...33333","...3..3."],
+ bunbuku:["33......","3133...3","31113333","31113222",".3332222","..300000",".3033000",".3000000",".3000003","33222222","31322222","31322222","33322222","..322222","..333333","..33..33"],
+ karakasa:[".......3","......33",".....322","...33222","..322222",".3223022","32222222","33333333","3..3..3.",".......3","......30",".......3",".......3",".......3","......33","....3333"],
+ getageta:["........","........","........",".3......","..3.....","...3....","....3...","33333333","31111111","31113011","31111111","31111113","33333333","..333...","..323...","..333..."],
+ tsumuji:["........",".33.....",".313....","..313333","...31111","..311111","..313011","..311111","...31113","33..3110","323.3110",".3233100","..333100","....3111","....3.33","...33..."],
+ hotarubi:["........","...3....","....3...",".....333","....3222","...32302","333.3222","3003.322","30003322",".3000332","..333332","....3000","...30000","...30000","....3000",".....333"],
+ shimejin:["........","....3333","..332222",".3220222",".3222220","33333333","...30000","...30300","...30000","...30003","...30000",".3333000","32223000",".3333000","...30000","...33333"],
+ tsukiyotake:["....3333","..330000",".3000100","30001000","30000000","30100000","33333333","..311111","..313011","..311111","..311113","..311111",".3311111","31111111","33333333","........"],
+ yodaka:["........","..3.....","..33.333","..322222",".3222222",".3200022",".3203022",".3200022",".3222223","33222223","32222222","32221111",".3221111","..322111","...33333","....3.3."],
+ dorotabou:["........","........","33......","323..333","323.3222",".3233222","..322302","..322222","..322233","..322222","..322222",".3222222","33222222","31122222","31111111","33333333"],
+ koishi:["........","........","........","........","....3333","..331111",".3111121",".3130111","31111111","31111113","31211111",".3112111","..311111","...33333","........","........"],
+ ishidourou:[".......3","......31","....3311","..331111","33333333","...32222","...32000","...32030","...32000","...33333","....3111","....3121","....3111","..333333",".3111111","33333333"],
 };
 const MONIMG={}, MONIMG_W={}, MONIMG_D={};
 for(const k in ART){const s=sprite(mir(ART[k]));MONIMG[k]=s;MONIMG_W[k]=tint(s,0);MONIMG_D[k]=tint(s,3);}
 
 // ============================== DATA ==============================
-const TYPES=['ノーマル','ほのお','みず','くさ','でんき','むし','ひこう','いわ','どく','じめん','かくとう'];
-const TC={
-  'ノーマル':{'いわ':.5},
-  'ほのお':{'くさ':2,'むし':2,'ほのお':.5,'みず':.5,'いわ':.5},
-  'みず':{'ほのお':2,'いわ':2,'じめん':2,'みず':.5,'くさ':.5},
-  'くさ':{'みず':2,'いわ':2,'じめん':2,'ほのお':.5,'くさ':.5,'どく':.5,'ひこう':.5,'むし':.5},
-  'でんき':{'みず':2,'ひこう':2,'くさ':.5,'でんき':.5,'じめん':0},
-  'むし':{'くさ':2,'どく':2,'ほのお':.5,'ひこう':.5,'かくとう':.5},
-  'ひこう':{'くさ':2,'むし':2,'かくとう':2,'でんき':.5,'いわ':.5},
-  'いわ':{'ほのお':2,'むし':2,'ひこう':2,'かくとう':.5,'じめん':.5},
-  'どく':{'くさ':2,'むし':2,'どく':.5,'じめん':.5,'いわ':.5},
-  'じめん':{'ほのお':2,'でんき':2,'いわ':2,'どく':2,'くさ':.5,'むし':.5,'ひこう':0},
-  'かくとう':{'ノーマル':2,'いわ':2,'どく':.5,'ひこう':.5,'むし':.5},
-};
-const SPECIAL=new Set(['ほのお','みず','くさ','でんき']);
-const typeEff=(mt,dts)=>dts.reduce((a,t)=>a*((TC[mt]&&TC[mt][t]!==undefined)?TC[mt][t]:1),1);
+// Five-element types (+ 無). Each element overcomes the next one in KOKU: 木→土→水→火→金→木
+const TYPES=['無','火','水','木','金','土'];
+const KOKU={'木':'土','土':'水','水':'火','火':'金','金':'木'};
+function typeEff(mt,dts){return dts.reduce((a,dt)=>{
+  if(mt==='無'||dt==='無'||mt==='ー') return a;
+  if(KOKU[mt]===dt) return a*2;          // attacker overcomes defender
+  if(KOKU[dt]===mt) return a*.5;         // defender overcomes attacker
+  if(mt===dt) return a*.5;               // same element dampens itself
+  return a;},1);}
+const TYPE_HINT='木は 土に、土は 水に、水は 火に、火は 金に、金は 木に つよい。';
+// s:1 = じゅつ (uses れいりょく), otherwise uses ちから
 const MV={
- tackle:{n:'たいあたり',t:'ノーマル',p:35,a:95,pp:35},
- scratch:{n:'ひっかく',t:'ノーマル',p:40,a:100,pp:35},
- quick:{n:'でんこうせっか',t:'ノーマル',p:40,a:100,pp:30,prio:1},
- growl:{n:'なきごえ',t:'ノーマル',p:0,a:100,pp:40,foe:['atk',-1]},
- tailwhip:{n:'しっぽをふる',t:'ノーマル',p:0,a:100,pp:30,foe:['def',-1]},
- leer:{n:'にらみつける',t:'ノーマル',p:0,a:100,pp:30,foe:['def',-1]},
- curl:{n:'まるくなる',t:'ノーマル',p:0,a:0,pp:40,self:['def',1]},
- harden:{n:'かたくなる',t:'ノーマル',p:0,a:0,pp:30,self:['def',1]},
- sand:{n:'すなかけ',t:'じめん',p:0,a:100,pp:15,foe:['acc',-1]},
- mud:{n:'どろかけ',t:'じめん',p:20,a:100,pp:10,foe:['acc',-1]},
- mudshot:{n:'マッドショット',t:'じめん',p:55,a:95,pp:15},
- string:{n:'いとをはく',t:'むし',p:0,a:95,pp:40,foe:['spd',-1]},
- sting:{n:'どくばり',t:'どく',p:15,a:100,pp:35,ail:'psn',ch:30},
- twin:{n:'ダブルニードル',t:'むし',p:25,a:100,pp:20,hits:2,ail:'psn',ch:20},
- bugbite:{n:'むしくい',t:'むし',p:45,a:100,pp:20},
- ember:{n:'ひのこ',t:'ほのお',p:40,a:100,pp:25,ail:'brn',ch:10},
- firefang:{n:'ほのおのキバ',t:'ほのお',p:65,a:95,pp:15,ail:'brn',ch:10},
- gun:{n:'みずでっぽう',t:'みず',p:40,a:100,pp:25},
- pulse:{n:'みずのはどう',t:'みず',p:60,a:100,pp:20},
- absorb:{n:'すいとる',t:'くさ',p:25,a:100,pp:20,drain:.5},
- vine:{n:'つるのムチ',t:'くさ',p:45,a:100,pp:25},
- leaf:{n:'はっぱカッター',t:'くさ',p:55,a:95,pp:25},
- sleep:{n:'ねむりごな',t:'くさ',p:0,a:75,pp:15,ail:'slp'},
- stun:{n:'しびれごな',t:'くさ',p:0,a:75,pp:30,ail:'par'},
- pspow:{n:'どくのこな',t:'どく',p:0,a:75,pp:35,ail:'psn'},
- shock:{n:'でんきショック',t:'でんき',p:40,a:100,pp:30,ail:'par',ch:10},
- spark:{n:'スパーク',t:'でんき',p:65,a:100,pp:20,ail:'par',ch:30},
- wave:{n:'でんじは',t:'でんき',p:0,a:100,pp:20,ail:'par'},
- gust:{n:'かぜおこし',t:'ひこう',p:40,a:100,pp:35},
- peck:{n:'つつく',t:'ひこう',p:35,a:100,pp:35},
- wing:{n:'つばさでうつ',t:'ひこう',p:60,a:100,pp:35},
- rock:{n:'いわおとし',t:'いわ',p:50,a:90,pp:15},
- chop:{n:'からてチョップ',t:'かくとう',p:50,a:100,pp:25},
- kick:{n:'けたぐり',t:'かくとう',p:50,a:90,pp:20},
- bite:{n:'かみつく',t:'ノーマル',p:60,a:100,pp:25},
- fang:{n:'ひっさつまえば',t:'ノーマル',p:80,a:90,pp:15},
- slam:{n:'たたきつける',t:'ノーマル',p:80,a:75,pp:20},
- struggle:{n:'わるあがき',t:'ーー',p:50,a:100,pp:1,recoil:.25},
+ butsukaru:{n:'ぶつかる',t:'無',p:35,a:95,pp:35},
+ totsugeki:{n:'とつげき',t:'無',p:40,a:100,pp:35},
+ hayawaza:{n:'はやわざ',t:'無',p:40,a:100,pp:30,prio:1},
+ gaburi:{n:'がぶり',t:'無',p:60,a:100,pp:25},
+ habataki:{n:'はばたき',t:'無',p:40,a:100,pp:35,s:1},
+ kuchibashi:{n:'くちばしつき',t:'無',p:50,a:95,pp:25},
+ odokasu:{n:'おどかす',t:'無',p:0,a:100,pp:40,foe:['atk',-1]},
+ kusuguru:{n:'くすぐる',t:'無',p:0,a:100,pp:30,foe:['def',-1]},
+ matowari:{n:'まとわりつく',t:'無',p:0,a:95,pp:40,foe:['spd',-1]},
+ chijikomaru:{n:'ちぢこまる',t:'無',p:0,a:0,pp:40,self:['def',1]},
+ megurami:{n:'めくらまし',t:'土',p:0,a:100,pp:15,foe:['acc',-1]},
+ dorodama:{n:'どろだま',t:'土',p:20,a:100,pp:10,s:1,foe:['acc',-1]},
+ tsubute:{n:'つぶていし',t:'土',p:50,a:90,pp:15},
+ jihibiki:{n:'じひびき',t:'土',p:65,a:100,pp:15},
+ dokudoro:{n:'どくどろ',t:'土',p:25,a:100,pp:25,s:1,ail:'psn',ch:30},
+ hibana:{n:'ひばな',t:'火',p:40,a:100,pp:25,s:1,ail:'brn',ch:10},
+ homura:{n:'ほむら',t:'火',p:65,a:95,pp:15,s:1,ail:'brn',ch:10},
+ mabayui:{n:'まばゆいひかり',t:'火',p:0,a:100,pp:20,foe:['acc',-1]},
+ shibuki:{n:'しぶき',t:'水',p:40,a:100,pp:25,s:1},
+ mizunoya:{n:'みずのや',t:'水',p:60,a:100,pp:20,s:1},
+ amadare:{n:'あまだれ',t:'水',p:0,a:0,pp:10,heal:.5},
+ happauchi:{n:'はっぱうち',t:'木',p:35,a:100,pp:30,s:1},
+ tsuta:{n:'つたしばり',t:'木',p:45,a:100,pp:25,s:1,foe:['spd',-1],fch:30},
+ suiage:{n:'すいあげ',t:'木',p:25,a:100,pp:20,s:1,drain:.5},
+ ooeda:{n:'おおえだ',t:'木',p:65,a:95,pp:15},
+ nemuri:{n:'ねむりのかおり',t:'木',p:0,a:75,pp:15,ail:'slp'},
+ shibirenomi:{n:'しびれのみ',t:'木',p:0,a:75,pp:30,ail:'par'},
+ dokunoko:{n:'どくのこ',t:'木',p:0,a:75,pp:35,ail:'psn'},
+ yaiba:{n:'やいば',t:'金',p:50,a:100,pp:25},
+ kanakiri:{n:'かなきり',t:'金',p:65,a:95,pp:15},
+ yoroi:{n:'てつのよろい',t:'金',p:0,a:0,pp:30,self:['def',1]},
+ suzu:{n:'すずのね',t:'金',p:0,a:75,pp:15,ail:'slp'},
+ yakeppachi:{n:'やけっぱち',t:'ー',p:50,a:100,pp:1,recoil:.25},
 };
-// base stats: [hp, atk, def, spd, spc]
+// base stats: [hp, ちから, まもり, すばやさ, れいりょく]
 const SP=[
- {id:'hinokon',n:'ヒノコン',t:['ほのお'],b:[39,52,43,65,50],cr:45,xp:62,k:'こぎつね',evo:[16,'hinogitsune'],ls:[[1,'scratch'],[1,'growl'],[9,'ember'],[13,'leer']],d:'しっぽの さきに ちいさな ほのおが ともる。 げんきな ときほど いきおいよく もえる。'},
- {id:'hinogitsune',n:'ヒノギツネ',t:['ほのお'],b:[58,64,58,80,65],cr:45,xp:142,k:'ひぎつね',ls:[[1,'scratch'],[1,'growl'],[9,'ember'],[13,'leer'],[17,'firefang'],[22,'quick']],d:'たてがみの ほのおで あいてを いかくする。 よるの やまで その ひかりが みえる という。'},
- {id:'mizumogu',n:'ミズモグ',t:['みず'],b:[44,48,65,43,50],cr:45,xp:63,k:'みずたま',evo:[16,'mizurakko'],ls:[[1,'tackle'],[1,'tailwhip'],[8,'gun'],[13,'curl']],d:'まるい からだで みずを はじく。 くちから いきおいよく みずを ふきだす。'},
- {id:'mizurakko',n:'ミズラッコ',t:['みず'],b:[59,63,80,58,65],cr:45,xp:142,k:'うみかわうそ',ls:[[1,'tackle'],[1,'tailwhip'],[8,'gun'],[13,'curl'],[18,'pulse'],[23,'bite']],d:'みずの なかでは だれよりも はやい。 おなかの うえで きのみを わる。'},
- {id:'happaru',n:'ハッパル',t:['くさ'],b:[45,49,49,45,65],cr:45,xp:64,k:'ふたば',evo:[16,'hanausagi'],ls:[[1,'tackle'],[1,'growl'],[7,'absorb'],[11,'vine'],[14,'stun']],d:'あたまの ふたばで ひかりを あびて げんきに なる。 はれた ひは ごきげん。'},
- {id:'hanausagi',n:'ハナウサギ',t:['くさ'],b:[60,62,63,60,80],cr:45,xp:141,k:'はなうさぎ',ls:[[1,'tackle'],[1,'growl'],[7,'absorb'],[11,'vine'],[14,'stun'],[17,'leaf'],[20,'sleep']],d:'ながい みみの はなが さくと あまい かおりで あたりが いっぱいに なる。'},
- {id:'nezucchi',n:'ネズッチ',t:['ノーマル'],b:[30,56,35,72,25],cr:255,xp:57,k:'ねずみ',evo:[20,'oonezucchi'],ls:[[1,'tackle'],[1,'tailwhip'],[7,'quick'],[14,'bite']],d:'どこにでも いる げんきな ねずみ。 じょうぶな まえばで なんでも かじる。'},
- {id:'oonezucchi',n:'オオネズッチ',t:['ノーマル'],b:[55,81,60,97,50],cr:127,xp:116,k:'ねずみ',ls:[[1,'tackle'],[1,'tailwhip'],[7,'quick'],[14,'bite'],[20,'fang']],d:'のびつづける まえばを いわで けずる。 けずった いわは かんぺきな まるに なる。'},
- {id:'kotorin',n:'コトリン',t:['ノーマル','ひこう'],b:[40,45,40,56,35],cr:255,xp:55,k:'ことり',evo:[18,'tsubasao'],ls:[[1,'gust'],[5,'sand'],[12,'quick'],[15,'peck']],d:'あさに なると きれいな こえで なく。 くさむらの むしを さがして たべる。'},
- {id:'tsubasao',n:'ツバサオー',t:['ノーマル','ひこう'],b:[63,60,55,71,50],cr:120,xp:113,k:'おおとり',ls:[[1,'gust'],[5,'sand'],[12,'quick'],[15,'peck'],[21,'wing']],d:'ひろい なわばりを もつ。 つばさを ひろげて そらを ゆったり とぶ。'},
- {id:'imomu',n:'イモムー',t:['むし'],b:[45,30,35,45,20],cr:255,xp:53,k:'いもむし',evo:[7,'karakoron'],ls:[[1,'tackle'],[1,'string']],d:'はっぱを もりもり たべて おおきく なる。 しょっかくを ふって あいてを おどかす。'},
- {id:'karakoron',n:'カラコロン',t:['むし'],b:[50,20,55,30,25],cr:120,xp:72,k:'さなぎ',evo:[10,'hirari'],ls:[[1,'tackle'],[1,'string'],[7,'harden']],d:'かたい からの なかで しんかの ときを まっている。 ほとんど うごかない。'},
- {id:'hirari',n:'ヒラリーフ',t:['むし','ひこう'],b:[60,45,50,70,80],cr:45,xp:160,k:'ちょうちょ',ls:[[1,'tackle'],[1,'string'],[7,'harden'],[10,'gust'],[12,'stun'],[14,'sleep'],[17,'bugbite']],d:'はねの こなには ふしぎな ちからが ある。 はなばたけを ひらひら まう。'},
- {id:'haribachi',n:'ハリバチ',t:['むし','どく'],b:[45,55,40,65,30],cr:255,xp:52,k:'はち',ls:[[1,'sting'],[1,'string'],[9,'bugbite'],[13,'twin']],d:'おしりの はりには どくが ある。 もりで であったら そっと はなれよう。'},
- {id:'pirimaru',n:'ピリマル',t:['でんき'],b:[35,55,30,90,50],cr:190,xp:82,k:'でんきだま',ls:[[1,'shock'],[1,'growl'],[6,'tailwhip'],[9,'wave'],[13,'quick'],[18,'spark']],d:'ほっぺに でんきを ためている。 もりの おくで まれに みつかる。'},
- {id:'pancho',n:'パンチョ',t:['かくとう'],b:[40,80,35,70,35],cr:190,xp:74,k:'こざる',ls:[[1,'scratch'],[1,'leer'],[9,'kick'],[15,'chop']],d:'おこりっぽい こざる。 いちど おこると だれにも とめられない。'},
- {id:'mimizun',n:'ミミズン',t:['じめん'],b:[35,55,25,95,45],cr:255,xp:81,k:'もぐら',ls:[[1,'scratch'],[1,'sand'],[8,'mud'],[12,'mudshot']],d:'つちの なかを すごい はやさで ほりすすむ。 はたけの つちを ふかふかに する。'},
- {id:'ishikoron',n:'イシコロン',t:['いわ','じめん'],b:[40,80,100,20,30],cr:255,xp:86,k:'いしころ',ls:[[1,'tackle'],[1,'curl'],[8,'sand'],[11,'rock']],d:'やまみちに ころがっている。 いしと まちがえて ふむと おこりだす。'},
- {id:'gansekio',n:'ガンセキオー',t:['いわ','じめん'],b:[35,45,130,70,30],cr:45,xp:108,k:'いわへび',ls:[[1,'tackle'],[1,'harden'],[10,'rock'],[13,'slam']],d:'つちの なかを ごうごうと すすむ。 とおった あとには おおきな トンネルが できる。'},
+ {id:'bonbori',n:'ボンボリ',t:['火'],b:[39,52,43,65,50],cr:45,xp:62,k:'ちょうちん',evo:[14,'kagaribi'],ls:[[1,'totsugeki'],[1,'odokasu'],[8,'hibana'],[12,'kusuguru']],d:'まつりの ちょうちんに やどった ヤドリ。 うれしいと ひが ゆらゆら おどりだす。'},
+ {id:'kagaribi',n:'カガリビ',t:['火','金'],b:[58,68,60,78,65],cr:45,xp:142,k:'かがりび',ls:[[1,'totsugeki'],[1,'odokasu'],[8,'hibana'],[12,'kusuguru'],[15,'homura'],[19,'yaiba'],[23,'hayawaza']],d:'てつの かごで ほのおを まもる。 よるの みちを てらし まよった ものを むらへ みちびく。'},
+ {id:'shizuku',n:'シズク',t:['水'],b:[44,48,65,43,50],cr:45,xp:63,k:'ひとしずく',evo:[14,'mizuchi'],ls:[[1,'butsukaru'],[1,'kusuguru'],[7,'shibuki'],[12,'chijikomaru']],d:'あさつゆに やどった ヤドリ。 ころがると すこしずつ おおきく なる。'},
+ {id:'mizuchi',n:'ミズチ',t:['水'],b:[59,63,78,60,68],cr:45,xp:142,k:'みずの りゅう',ls:[[1,'butsukaru'],[1,'kusuguru'],[7,'shibuki'],[12,'chijikomaru'],[15,'mizunoya'],[18,'amadare'],[22,'gaburi']],d:'いけや かわを まもる ヤドリ。 ひげを ふるわせて あめの けはいを かぎとる。'},
+ {id:'moegi',n:'モエギ',t:['木'],b:[45,49,49,45,65],cr:45,xp:64,k:'めばえ',evo:[14,'ookusu'],ls:[[1,'butsukaru'],[1,'odokasu'],[6,'suiage'],[10,'happauchi'],[13,'shibirenomi']],d:'あたらしい めに やどった ヤドリ。 ひなたぼっこを すると ふたばが ぴんと たつ。'},
+ {id:'ookusu',n:'オオクス',t:['木'],b:[62,66,66,50,78],cr:45,xp:141,k:'おおき',ls:[[1,'butsukaru'],[1,'odokasu'],[6,'suiage'],[10,'happauchi'],[13,'shibirenomi'],[15,'tsuta'],[18,'nemuri'],[22,'ooeda']],d:'ちんじゅの もりの おおきな きに やどる。 みきの かおは なんびゃくねんも むらを みてきた。'},
+ {id:'kesaran',n:'ケサラン',t:['無','木'],b:[35,35,40,70,55],cr:255,xp:55,k:'けだま',ls:[[1,'butsukaru'],[1,'matowari'],[6,'happauchi'],[11,'hayawaza'],[15,'suiage']],d:'かぜに のって ふわふわ ただよう。 みつけた ひとには いいことが あると いわれる。'},
+ {id:'chagama',n:'チャガマ',t:['金'],b:[45,55,55,40,30],cr:255,xp:58,k:'ちゃがま',evo:[16,'bunbuku'],ls:[[1,'totsugeki'],[1,'odokasu'],[6,'chijikomaru'],[9,'yaiba'],[14,'gaburi']],d:'ふるい ちゃがまに やどった ヤドリ。 おゆが わくと うれしくて しっぽが でる。'},
+ {id:'bunbuku',n:'ブンブク',t:['金','無'],b:[70,75,75,50,45],cr:90,xp:120,k:'ちゃがま',ls:[[1,'totsugeki'],[1,'odokasu'],[6,'chijikomaru'],[9,'yaiba'],[14,'gaburi'],[16,'kanakiri']],d:'てあしが はえて つなわたりまで できるように なった。 おまつりが だいすき。'},
+ {id:'karakasa',n:'カラカサ',t:['水','無'],b:[40,40,45,60,50],cr:200,xp:60,k:'からかさ',ls:[[1,'butsukaru'],[1,'kusuguru'],[5,'shibuki'],[10,'hayawaza'],[14,'mizunoya']],d:'わすれられた かさに やどる。 あめの ひは ひとの うしろを ぴょんぴょん ついてくる。'},
+ {id:'getageta',n:'ゲタゲタ',t:['木'],b:[45,60,50,55,25],cr:200,xp:62,k:'げた',ls:[[1,'totsugeki'],[1,'matowari'],[8,'happauchi'],[12,'tsuta'],[16,'ooeda']],d:'からん ころんと おとを たてて あるく。 わらいごえは げたげた と きこえる。'},
+ {id:'tsumuji',n:'ツムジ',t:['金'],b:[40,72,35,90,35],cr:150,xp:74,k:'つむじかぜ',ls:[[1,'hayawaza'],[1,'kusuguru'],[8,'yaiba'],[13,'kanakiri']],d:'つむじかぜと いっしょに あらわれる。 はやすぎて すがたを みた ものは すくない。'},
+ {id:'hotarubi',n:'ホタルビ',t:['火','木'],b:[35,40,35,85,70],cr:150,xp:82,k:'ほたる',ls:[[1,'hibana'],[1,'matowari'],[6,'mabayui'],[10,'suiage'],[14,'shibirenomi'],[18,'homura']],d:'くらやみの もりで ぽうっと ひかる。 ひかりの いろで きもちが わかる。'},
+ {id:'shimejin',n:'シメジン',t:['木'],b:[50,45,55,30,50],cr:255,xp:56,k:'きのこ',evo:[10,'tsukiyotake'],ls:[[1,'butsukaru'],[1,'chijikomaru'],[5,'dokunoko'],[8,'suiage']],d:'たおれた きの ねもとに むれて はえる。 なかまと はなれると しょんぼりする。'},
+ {id:'tsukiyotake',n:'ツキヨタケ',t:['木','火'],b:[65,50,65,45,85],cr:60,xp:150,k:'ひかるきのこ',ls:[[1,'butsukaru'],[1,'chijikomaru'],[5,'dokunoko'],[8,'suiage'],[10,'hibana'],[13,'nemuri'],[18,'homura']],d:'つきの ない よるに かさが あおじろく ひかる。 その ひかりを あびると ねむくなる。'},
+ {id:'yodaka',n:'ヨダカ',t:['無'],b:[40,45,40,62,45],cr:255,xp:55,k:'よるのとり',ls:[[1,'habataki'],[5,'megurami'],[9,'hayawaza'],[13,'kuchibashi'],[17,'suzu']],d:'よるに なると めを ひらく とり。 おおきな めで やみの なかでも よく みえる。'},
+ {id:'dorotabou',n:'ドロタボウ',t:['土','水'],b:[55,60,55,30,45],cr:190,xp:70,k:'どろ',ls:[[1,'butsukaru'],[1,'megurami'],[7,'dorodama'],[11,'dokudoro'],[15,'jihibiki']],d:'たんぼの どろから あらわれる。 たがやして ほしくて てを ふりまわす。'},
+ {id:'koishi',n:'コイシ',t:['土'],b:[40,75,95,20,30],cr:255,xp:80,k:'こいし',ls:[[1,'butsukaru'],[1,'chijikomaru'],[7,'megurami'],[10,'tsubute']],d:'みちばたの こいしに やどる。 けとばされると ずっと おぼえている。'},
+ {id:'ishidourou',n:'イシドウロウ',t:['土','火'],b:[50,60,105,45,55],cr:45,xp:115,k:'いしどうろう',ls:[[1,'butsukaru'],[1,'yoroi'],[9,'tsubute'],[11,'hibana'],[13,'jihibiki']],d:'やしろの さんどうを まもる いしどうろう。 なかの ひは いちども きえた ことが ない。'},
 ];
 const SPI={}; SP.forEach((s,i)=>{s.no=i+1;SPI[s.id]=s;});
 const IT={
- potion:{n:'キズぐすり',price:300,heal:20,d:'モンスターの HPを 20 かいふくする'},
- superp:{n:'いいキズぐすり',price:700,heal:50,d:'モンスターの HPを 50 かいふくする'},
- antid:{n:'どくけし',price:100,cure:'psn',d:'モンスターの どくを なおす'},
- parlz:{n:'まひなおし',price:200,cure:'par',d:'モンスターの まひを なおす'},
- awake:{n:'ねむけざまし',price:250,cure:'slp',d:'ねむっている モンスターを おこす'},
- burnh:{n:'やけどなおし',price:250,cure:'brn',d:'モンスターの やけどを なおす'},
- ball:{n:'モンスターボール',price:200,ball:1,d:'やせいの モンスターに なげて つかまえる'},
- parcel:{n:'おとどけもの',key:1,d:'カシワはかせへの とどけもの'},
+ tsuyu:{n:'いやしのつゆ',price:300,heal:20,d:'なかまの HPを 20 かいふくする'},
+ ootsuyu:{n:'おおつゆ',price:700,heal:50,d:'なかまの HPを 50 かいふくする'},
+ gedoku:{n:'げどくそう',price:100,cure:'psn',d:'なかまの どくを けす'},
+ shibire:{n:'しびれとり',price:200,cure:'par',d:'なかまの しびれを とる'},
+ suzu:{n:'めざましすず',price:250,cure:'slp',d:'ねむっている なかまを おこす'},
+ hiyashi:{n:'ひやしみず',price:250,cure:'brn',d:'なかまの やけどを ひやす'},
+ ito:{n:'むすびいと',price:200,ball:1,d:'のらの ヤドリに なげて ちぎりを むすぶ'},
+ flint:{n:'ひうちいし',key:1,d:'おおとうろうに ひを いれる ための いし'},
 };
-const ITEM_ORDER=['potion','superp','antid','parlz','awake','burnh','ball','parcel'];
-const STN={psn:'どく',par:'まひ',slp:'ねむり',brn:'やけど'};
-const STAT_N={atk:'こうげき',def:'ぼうぎょ',spd:'すばやさ',spc:'とくしゅ',acc:'めいちゅうりつ',eva:'かいひりつ'};
+const ITEM_ORDER=['tsuyu','ootsuyu','gedoku','shibire','suzu','hiyashi','ito','flint'];
+const STN={psn:'どく',par:'しびれ',slp:'ねむり',brn:'やけど'};
+const STAT_N={atk:'ちから',def:'まもり',spd:'すばやさ',spc:'れいりょく',acc:'めいちゅう',eva:'みのこなし'};
 
 // ============================== STATE ==============================
 let S=null;
-function freshState(){return {name:'ユウ',rival:'ジン',party:[],box:[],bag:{potion:1},money:3000,flags:{},map:'house1',x:2,y:5,dir:'up',
+function freshState(){return {name:'ユウ',rival:'ミオ',party:[],box:[],bag:{tsuyu:1},money:3000,flags:{},map:'house1',x:2,y:5,dir:'up',
   seen:{},caught:{},lastHeal:{map:'house1',x:4,y:5,dir:'up'},badges:[],time:0,steps:0};}
 const fmt=s=>String(s).replace(/\{P\}/g,S?S.name:'').replace(/\{R\}/g,S?S.rival:'');
 const expFor=lv=>lv<=1?0:lv*lv*lv;
@@ -492,104 +493,105 @@ async function fade(to,frames=10,col=0){FADE.col=col;const from=FADE.a;for(let i
 // ============================== MAPS ==============================
 function house(id,exit,ex,ey,npcs,music='town'){return {name:'いえ',music,rows:["########","#bv___b#","#______#","#__tt__#","#__tt__#","#______#","#__m___#","########"],
   warps:[{x:3,y:6,to:exit,tx:ex,ty:ey,dir:'down',mat:1}],npcs};}
-function center(id,exit,ex,ey,extra=[]){return {name:'モンスターセンター',music:'center',rows:["############","#__h_______#","#cccccccccc#","#__________#","#__________#","#p_________#","#__tt___tt_#","#_____m____#","############"],
-  warps:[{x:6,y:7,to:exit,tx:ex,ty:ey,dir:'down',mat:1}],npcs:[{spr:'nurse',x:5,y:1,dir:'down',fixed:1,talk:()=>nurseTalk(id)},...extra]};}
-function mart(id,exit,ex,ey,stock,extra=[]){return {name:'ショップ',music:'center',rows:["##########","#___bbbbb#","#ccc_____#","#________#","#___bb_bb#","#________#","#____m___#","##########"],
+function inn(id,exit,ex,ey,extra=[]){return {name:'やすらぎ堂',music:'center',rows:["############","#__h_______#","#cccccccccc#","#__________#","#__________#","#p_________#","#__tt___tt_#","#_____m____#","############"],
+  warps:[{x:6,y:7,to:exit,tx:ex,ty:ey,dir:'down',mat:1}],npcs:[{spr:'keeper',x:5,y:1,dir:'down',fixed:1,talk:()=>keeperTalk(id)},...extra]};}
+function shopMap(id,exit,ex,ey,stock,extra=[]){return {name:'よろず屋',music:'center',rows:["##########","#___bbbbb#","#ccc_____#","#________#","#___bb_bb#","#________#","#____m___#","##########"],
   warps:[{x:5,y:6,to:exit,tx:ex,ty:ey,dir:'down',mat:1}],npcs:[{spr:'clerk',x:2,y:1,dir:'down',fixed:1,talk:()=>clerkTalk(id,stock)},...extra]};}
 
 const MAPS={
- town:{name:'ハジマリタウン',out:1,music:'town',rows:[
-  "TTTTTTTTT==TTTTTTTTT","T........==........T","T..RRRR..==..RRRR..T","T..RRRR..==..RRRR..T","T..WwDW..==..WwDW..T","T...S....==......S.T",
-  "T........==........T","T=========.........T","T=*.*....=..RRRRRR.T","T=.......=..RRRRRR.T","T=..FFFF.=..WwWDwW.T","T=..*..*.=.........T",
-  "T=..*..*.=...S.....T","T=.......==========T","T~~~~~~.........*..T","T~~~~~~...*........T","T~~~~~~............T","TTTTTTTTTTTTTTTTTTTT"],
+ town:{name:'ひだまり村',out:1,music:'town',rows:[
+  "TTTTTTTTT==TTTTTTTTT","T........==........T","T.RRRR...==...RRRR.T","T.RRRR...==...RRRR.T","T.WDwW...==...WwDW.T","T....S...==...S....T",
+  "T........==........T","T**......==......**T","T.....=========....T","T.....=..~~..=.....T","T.....=.~~~~.=.....T","T..*..=..~~..=..*..T",
+  "T.....====O===.....T","T.........=........T","T....RRRRRRR.......T","T....RRRRRRR...FFF.T","T....WwWDWwW...*.*.T","T..............*.*.T","TTTTTTTTTTTTTTTTTTTT"],
   conn:{n:{to:'route1',dx:0}},
-  warps:[{x:5,y:4,to:'house1',tx:3,ty:6,dir:'up'},{x:15,y:4,to:'house2',tx:3,ty:6,dir:'up'},{x:15,y:10,to:'lab',tx:5,ty:10,dir:'up'}],
-  signs:{'4,5':'{P}の いえ','17,5':'{R}の いえ','13,12':'カシワ モンスター けんきゅうじょ'},
-  triggers:[{t:(x,y)=>y===1&&(x===9||x===10),c:()=>!S.flags.starter,run:()=>profStop()}],
-  npcs:[{spr:'girl',x:12,y:7,walk:1,text:'ハジマリタウンは ちいさいけど みどりが きれいな まち なのよ。'},
-        {spr:'man',x:8,y:15,walk:1,text:'みずの うえは モンスターが いないと わたれないんだ。 いつか ぼくも うみの むこうへ いってみたいなあ。'}]},
- house1:house('house1','town',5,5,[{spr:'mom',x:5,y:3,dir:'left',talk:()=>momTalk()}]),
- house2:house('house2','town',15,5,[{spr:'girl',x:2,y:3,dir:'right',talk:()=>sisTalk()}]),
- lab:{name:'けんきゅうじょ',music:'town',rows:["##########","#bbb__bbb#","#________#","#___ttt__#","#________#","#________#","#bb____bb#","#________#","#________#","#________#","#____m___#","##########"],
-  warps:[{x:5,y:10,to:'town',tx:15,ty:11,dir:'down',mat:1}],
+  warps:[{x:3,y:4,to:'house1',tx:3,ty:6,dir:'up'},{x:16,y:4,to:'house2',tx:3,ty:6,dir:'up'},{x:8,y:16,to:'lab',tx:5,ty:10,dir:'up'}],
+  signs:{'5,5':'{P}の いえ','14,5':'かじや {R}の いえ','10,12':()=>S.flags.lit?'おおとうろうに あたたかい ひが ともっている。 むらの みんなが あつまってきた。':'むらの おおとうろう。 ひが きえて つめたく なっている…'},
+  triggers:[{t:(x,y)=>y===1&&(x===9||x===10),c:()=>!S.flags.starter,run:()=>villageFog()}],
+  npcs:[{spr:'girl',x:12,y:7,walk:1,text:()=>S.flags.lit?'おおとうろうが ともって ほっとしたわ。 やっぱり この むらには あかりが にあうわね。':'おおとうろうが きえてから むらの そとは きりばかり… こよいの まつりで ひが もどると いいけど。'},
+        {spr:'man',x:15,y:13,walk:1,text:'いけの ほとりには ときどき ちいさな ヤドリが みずを のみに くるんだ。 そっと しておけば こわがらないよ。'},
+        {spr:'old',x:4,y:10,walk:1,text:'トワさまの いおりは むらの みなみじゃ。 あの かたは むかし しまじゅうの やしろを めぐった ひもり なんじゃよ。'}]},
+ house1:house('house1','town',3,5,[{spr:'mom',x:5,y:3,dir:'left',talk:()=>momTalk()}]),
+ house2:house('house2','town',16,5,[{spr:'smith',x:2,y:3,dir:'right',talk:()=>smithTalk()}]),
+ lab:{name:'トワの いおり',music:'town',rows:["##########","#bbb__bbb#","#________#","#___ttt__#","#________#","#________#","#bb____bb#","#________#","#________#","#________#","#____m___#","##########"],
+  warps:[{x:5,y:10,to:'town',tx:8,ty:17,dir:'down',mat:1}],
   triggers:[{t:(x,y)=>y===7,c:()=>S.flags.starter&&!S.flags.rival1,run:()=>rivalBattle1()}],
-  npcs:[{id:'prof',spr:'prof',x:5,y:2,dir:'down',show:()=>S.flags.labIntro,talk:()=>profTalk()},
-        {id:'rival',spr:'rival',x:3,y:5,dir:'up',show:()=>!S.flags.rival1,talk:()=>say(S.flags.starter?'{R}「おれの モンスターの ほうが つよそうだぜ！」':(S.flags.labIntro?'{R}「じいさんが いいって いうまで まってるんだぞ！」':'{R}「なんだ {P}か。 じいさん いないぜ。 ずっと まってるのにさ」'))},
-        {id:'ball_hinokon',obj:'ball',x:4,y:3,show:()=>ballShown('hinokon'),talk:()=>pickStarter('hinokon')},
-        {id:'ball_mizumogu',obj:'ball',x:5,y:3,show:()=>ballShown('mizumogu'),talk:()=>pickStarter('mizumogu')},
-        {id:'ball_happaru',obj:'ball',x:6,y:3,show:()=>ballShown('happaru'),talk:()=>pickStarter('happaru')},
-        {spr:'clerk',x:2,y:8,walk:1,text:'はかせは モンスターの けんきゅうで せかいてきに ゆうめいな ひと なんだよ。'},
-        {spr:'clerk',x:7,y:8,walk:1,text:'モンスターずかんを かんせい させるのが はかせの ゆめ なんだって。'}]},
- route1:{name:'1ばんどうろ',out:1,music:'route',rows:[
+  npcs:[{id:'towa',spr:'towa',x:5,y:2,dir:'down',talk:()=>towaTalk()},
+        {id:'rival',spr:'rival',x:3,y:5,dir:'up',show:()=>!S.flags.rival1,talk:()=>say(S.flags.starter?'{R}「へへっ。 おれの ヤドリの ほうが つよそうだろ？」':'{R}「おそいぞ {P}！ ばあちゃんの はなし はやく ききたいんだから」')},
+        {id:'lan_bonbori',obj:'lantern',x:4,y:3,show:()=>lanternShown('bonbori'),talk:()=>lanternTalk()},
+        {id:'lan_shizuku',obj:'lantern',x:5,y:3,show:()=>lanternShown('shizuku'),talk:()=>lanternTalk()},
+        {id:'lan_moegi',obj:'lantern',x:6,y:3,show:()=>lanternShown('moegi'),talk:()=>lanternTalk()},
+        {spr:'clerk',x:2,y:8,walk:1,text:'ぼくは トワさまの でし。 ヤドリと ちぎりを むすぶには ちからだけじゃ だめ。 こころを かよわせる ことが たいせつ なんだって。'},
+        {spr:'girl',x:7,y:8,walk:1,text:'ヤドリには 火・水・木・金・土の いつつの そうせいが あるの。 木は 土に、土は 水に、水は 火に、火は 金に、金は 木に つよいのよ。'}]},
+ route1:{name:'わたげの こみち',out:1,music:'route',rows:[
   "TTTTTTTTT==TTTTTTTTT","T........==........T","T.,,,,...==...,,,,.T","T.,,,,...==...,,,,.T","T.,,,,..........,,.T","T......TTTT........T",
   "TLLLLL.TTTT.LLLLLLLT","T......,,,,........T","T......,,,,..S.....T","T..TT..,,,,........T","T..TT.........,,,,.T","T.............,,,,.T",
   "TLLLLLLLL..LLLLLLLLT","T....,,,,..........T","T....,,,,...TTT....T","T....,,,,...TTT....T","T...........TTT,,,.T","T..,,,,...........,T",
   "T..,,,,.....LLLLLLLT","T..,,,,............T","T.......,,,,,,.....T","T.......,,,,,,.....T","TTTTT...........TTTT","T........==........T","TTTTTTTTT==TTTTTTTTT"],
   conn:{n:{to:'kodama',dx:0},s:{to:'town',dx:0}},
-  signs:{'13,8':'1ばんどうろ\nハジマリタウン ― コダマシティ'},
-  enc:[['nezucchi',2,4,50],['kotorin',2,5,50]],
+  signs:{'13,8':'わたげの こみち\nひだまり村 ― しおさい町'},
+  enc:[['kesaran',2,4,45],['chagama',2,4,40],['yodaka',3,4,15]],
   npcs:[{spr:'clerk',x:10,y:10,walk:1,talk:()=>route1Clerk()}]},
- kodama:{name:'コダマシティ',out:1,music:'town',rows:[
+ kodama:{name:'しおさい町',out:1,music:'town',fog:[0,3],rows:[
   "TTTTTTTTT==TTTTTTTTT","T........==........T","T..RRRRR.==..RRRR..T","T..RRRRR.==..RRRR..T","T..WwDwW.==..WwDW..T","T........==........T",
   "T==================T","T.......=.....=....T","T.RRRR..=.RRRR=....T","T.RRRR..=.RRRR=....T","T.WPDW..=.WMDW=..S.T","T.......=.....=....T",
   "T..S....=..*..=....T","T=================.T","T...*....==....*...T","T..*.*...==..*.*...T","T........==........T","T........==........T","TTTTTTTTT==TTTTTTTTT"],
   conn:{n:{to:'route2',dx:0},s:{to:'route1',dx:0}},
   warps:[{x:4,y:10,to:'center_k',tx:6,ty:7,dir:'up'},{x:12,y:10,to:'mart_k',tx:5,ty:6,dir:'up'},{x:5,y:4,to:'houseA_k',tx:3,ty:6,dir:'up'},{x:15,y:4,to:'houseB_k',tx:3,ty:6,dir:'up'}],
-  signs:{'17,10':'コダマシティ\nみどりの こだまする まち','3,12':'トレーナーの ヒント！\nHPが へったら モンスターセンターで かいふく しよう！ だいじな ときは メニューから レポートを かいておこう！'},
-  triggers:[{t:(x,y)=>y===1&&(x===9||x===10),c:()=>!S.flags.dex,run:()=>oldManBlock()}],
-  npcs:[{id:'oldman',spr:'old',x:8,y:2,dir:'down',fixed:1,talk:()=>oldManTalk()},
-        {spr:'boy',x:15,y:15,walk:1,text:'モンスターは たたかうと けいけんちを もらって レベルが あがるんだ！ レベルが あがると あたらしい わざも おぼえるよ！'},
-        {spr:'girl',x:6,y:7,walk:1,text:'きたの 2ばんどうろを ぬけると もりのみち。 その さきに イワヤマシティが あるのよ。'}]},
- center_k:center('center_k','kodama',4,11,[{spr:'man',x:9,y:4,walk:1,text:'パソコンで モンスターを あずけたり ひきだしたり できるんだ。 つれあるけるのは 6ぴき まで だからね。'}]),
- mart_k:mart('mart_k','kodama',12,11,['ball','potion','antid','parlz'],[{spr:'boy',x:6,y:4,walk:1,text:'どくけしは もりのみちで ぜったい ひつようだよ！ ハリバチの どくばりは こわいんだ。'}]),
- houseA_k:house('houseA_k','kodama',5,5,[{spr:'old',x:5,y:3,dir:'left',text:'モンスターは ねむったり まひしたり していると つかまえやすく なるんじゃ。 HPも すくない ほうが いい。'}]),
- houseB_k:house('houseB_k','kodama',15,5,[{spr:'girl',x:2,y:3,dir:'right',text:'わざには タイプが あるの。 みずは ほのおに つよくて くさは みずに つよいのよ。 いわには みずと くさが よく きくわ！'}]),
- route2:{name:'2ばんどうろ',out:1,music:'route',rows:[
+  signs:{'17,10':'しおさい町\nしおかぜの ささやく みなとまち','3,12':'たびびとへ\nつかれた ヤドリは やすらぎ堂で やすませよう。 その ひの できごとは メニューの「にっき」に かいておこう。'},
+  triggers:[{t:(x,y)=>y===4&&(x===9||x===10),c:()=>!S.flags.lit,run:()=>townFog()}],
+  npcs:[{spr:'old',x:8,y:5,dir:'down',walk:1,text:()=>S.flags.lit?'きりが はれたら うみが よく みえるわい。 きたの かわべりの みちも とおれるように なったぞ。':'きたの みちは こい きりで まえが みえん。 ひだまり村の おおとうろうが きえてから ずっと こうなんじゃ…'},
+        {spr:'boy',x:15,y:15,walk:1,text:'ヤドリは たたかうと けいけんを つんで つよく なるんだ！ レベルが あがると あたらしい わざも みにつけるよ。'},
+        {spr:'girl',x:6,y:7,walk:1,text:'かわべりの みちを ぬけると くらやみの もり。 その さきに いしづみ町と いわおの やしろが あるのよ。'}]},
+ center_k:inn('center_k','kodama',4,11,[{spr:'man',x:9,y:4,walk:1,text:'その ひだりの いしは ことづていし。 てを かざすと ヤドリを あずけたり よびだしたり できる。 つれて あるけるのは 6にん まで だよ。'}]),
+ mart_k:shopMap('mart_k','kodama',12,11,['ito','tsuyu','gedoku','shibire'],[{spr:'boy',x:6,y:4,walk:1,text:'げどくそうは もりで ひつようだよ。 シメジンの どくのこを すうと くるしいんだ。'}]),
+ houseA_k:house('houseA_k','kodama',5,5,[{spr:'old',x:5,y:3,dir:'left',text:'のらの ヤドリは いきなり いとを なげても いやがる。 まず「なだめる」で こころを ほぐして やるんじゃ。 ねむっていたり しびれていても むすびやすいぞ。'}]),
+ houseB_k:house('houseB_k','kodama',15,5,[{spr:'girl',x:2,y:3,dir:'right',text:'おなじ そうせいの わざは おたがいに ききにくいの。 火の わざは 火の ヤドリには ほとんど こたえないわ。'}]),
+ route2:{name:'かわべりの みち',out:1,music:'route',rows:[
   "TTTTTTTTT==TTTTTTTTT","T........==....,,,,T","T.,,,,...==....,,,,T","T.,,,,...==....,,,,T","T.,,,,...==........T","T........==...TTTTTT",
   "TTTTT....==........T","T,,,,....==..S.....T","T,,,,....==........T","T,,,,....==...,,,,.T","T........==...,,,,.T","TLLLLLL..==..LLLLLLT",
   "T........==........T","T..TT....==....TT..T","T..TT....==....TT..T","T........==........T","TTTTTTTTT==TTTTTTTTT"],
   conn:{n:{to:'forest',dx:0},s:{to:'kodama',dx:0}},
-  signs:{'13,7':'2ばんどうろ\nこの さき もりのみち'},
-  enc:[['nezucchi',3,5,25],['kotorin',3,5,25],['imomu',3,5,15],['mimizun',3,5,22],['pancho',4,6,13]],
-  npcs:[{spr:'boy',x:6,y:8,dir:'right',trainer:{flag:'tr_r2',cls:'たんぱんこぞう',name:'タクヤ',sight:3,party:[['nezucchi',5],['kotorin',5]],money:20,
-    intro:'めと めが あったら しょうぶの あいず！',lose:'ちぇっ まけちゃった！',after:'ぼく もっと つよい モンスターを つかまえるんだ！'}}]},
- forest:{name:'もりのみち',out:1,music:'forest',rows:[
+  signs:{'13,7':'かわべりの みち\nこの さき くらやみの もり'},
+  enc:[['karakasa',3,5,25],['getageta',3,5,22],['chagama',3,5,18],['dorotabou',4,6,15],['kesaran',3,5,12],['tsumuji',4,6,8]],
+  npcs:[{spr:'man',x:6,y:8,dir:'right',trainer:{flag:'tr_r2',cls:'つりびと',name:'ゲンゾウ',sight:3,party:[['karakasa',5],['dorotabou',6]],money:20,
+    intro:'おっ わかいの！ さかなが つれん あいだ ちからくらべに つきあって くれ！',lose:'まいった まいった！ きょうは なにを やっても だめな ひだ！',after:'あめの ひには カラカサが よく でるんじゃ。 おもしろい やつらじゃよ。'}}]},
+ forest:{name:'くらやみの もり',out:1,music:'forest',rows:[
   "TTTTTTTTTTTTTTTTT==T","T,,,,,,,,......,,..T","T,,,,,,,,TTTTTT,,,,T","TTTTTTTT,TTTTTTTTTTT","T,,,,,,,,,,,,,,,,,,T","T,,..........,,,,,,T",
   "TTTTTTTTTTTTTTTT,,TT","T,,,,,,,,,,,,,,,,,,T","T,,,,TTTTTT,,,,,,,,T","T,,TTTTTTTTTTTTTTTTT","T,,,,,,,,,,,,,,,,,,T","T....,,,,,,,,,,....T",
   "TTTTTTTTTTT,,TTTTTTT","T,,,,,,,,,,..,,,,,,T","T,,,,,,,,....,,,,,,T","TTTTTTTTT==TTTTTTTTT"],
   conn:{n:{to:'iwayama',dx:0},s:{to:'route2',dx:0}},
-  enc:[['imomu',3,5,30],['karakoron',4,6,14],['haribachi',3,5,32],['pirimaru',4,6,9],['kotorin',4,6,15]],
+  enc:[['shimejin',3,5,32],['yodaka',4,6,22],['kesaran',4,6,16],['tsukiyotake',6,7,8],['hotarubi',4,6,10],['getageta',4,6,12]],
   encRate:12,
   triggers:[{t:(x,y)=>y===1&&x>=15,c:()=>!S.flags.rival2,run:()=>rivalBattle2()}],
-  npcs:[{spr:'bug',x:14,y:13,dir:'left',trainer:{flag:'tr_f1',cls:'むしとりしょうねん',name:'ケンタ',sight:3,party:[['imomu',6],['haribachi',6]],money:10,
-          intro:'きみも むしとり？ ぼくの むしモンスター みせて あげる！',lose:'うわー！ ぼくの むしたちが！',after:'むしモンスターは しんかが はやいんだよ！'}},
-        {spr:'bug',x:6,y:11,dir:'left',trainer:{flag:'tr_f2',cls:'むしとりしょうねん',name:'ダイチ',sight:4,party:[['haribachi',7],['karakoron',7],['imomu',7]],money:10,
-          intro:'まって！ この もりは ぼくの なわばり なんだ！',lose:'まいったなあ…',after:'カラコロンは じっと しているけど しんかすると すごいんだ！'}},
-        {spr:'bug',x:13,y:8,dir:'up',trainer:{flag:'tr_f3',cls:'むしとりしょうねん',name:'ソウタ',sight:1,party:[['haribachi',9]],money:10,
-          intro:'ぼくの ハリバチは きたえてあるぞ！',lose:'ハリバチー！',after:'どくに なったら どくけしを つかうんだよ。'}},
-        {spr:'boy',x:12,y:5,dir:'left',trainer:{flag:'tr_f4',cls:'たんぱんこぞう',name:'ハルト',sight:6,party:[['pirimaru',8],['nezucchi',9]],money:20,
-          intro:'もりで みつけた とっておきを みせてやる！',lose:'くっそー！',after:'ピリマルは もりの おくに いるんだ。 なかなか でないけどね。'}},
-        {spr:'girl',x:4,y:5,walk:1,text:'もりは くらくて まよいそう… でも みちは ひとつに つながってるのよ。'},
-        {id:'it_f1',obj:'ball',x:1,y:14,item:'potion',flag:'it_f1'},{id:'it_f2',obj:'ball',x:18,y:10,item:'ball',flag:'it_f2'},
-        {id:'it_f3',obj:'ball',x:1,y:1,item:'antid',flag:'it_f3'},{id:'it_f4',obj:'ball',x:18,y:4,item:'superp',flag:'it_f4'}]},
- iwayama:{name:'イワヤマシティ',out:1,music:'town',rows:[
+  npcs:[{spr:'picker',x:14,y:13,dir:'left',trainer:{flag:'tr_f1',cls:'きのこがり',name:'サワ',sight:3,party:[['shimejin',6],['kesaran',6]],money:12,
+          intro:'あら いい ところに！ わたしの とっておきの ヤドリ みてちょうだい！',lose:'あらら… きのこより もろかったわ',after:'シメジンは なかまが おおいと げんきなの。 レベル 10で すがたを かえるのよ。'}},
+        {spr:'picker',x:6,y:11,dir:'left',trainer:{flag:'tr_f2',cls:'きのこがり',name:'モリオ',sight:4,party:[['shimejin',7],['yodaka',7],['shimejin',7]],money:12,
+          intro:'この もりの きのこは ぜんぶ おれの ものだ！ じゃまは させないぞ！',lose:'ううっ… かごが からっぽだ…',after:'ツキヨタケの ひかりは きれいだけど みつめすぎると ねむくなるんだ。'}},
+        {spr:'boy',x:13,y:8,dir:'up',trainer:{flag:'tr_f3',cls:'よふかしっこ',name:'ヨル',sight:1,party:[['yodaka',9]],money:15,
+          intro:'よるの もりは ぼくの にわさ！ ヨダカ いくよ！',lose:'ふわぁ… ねむくて ちからが でない…',after:'ホタルビは この もりに しか いないんだ。 みつけたら ラッキーだよ。'}},
+        {spr:'boy',x:12,y:5,dir:'left',trainer:{flag:'tr_f4',cls:'わんぱく',name:'タイチ',sight:6,party:[['hotarubi',8],['getageta',9]],money:20,
+          intro:'もりの おくで みつけた とっておきを みせてやる！',lose:'くっそー！ つぎは まけないからな！',after:'ゲタゲタは からん ころんって あるく おとで すぐ わかるんだぜ。'}},
+        {spr:'girl',x:4,y:5,walk:1,text:'もりは くらくて まよいそう… でも みちは ひとつに つながって いるみたい。'},
+        {id:'it_f1',obj:'bundle',x:1,y:14,item:'tsuyu',flag:'it_f1'},{id:'it_f2',obj:'bundle',x:18,y:10,item:'ito',flag:'it_f2'},
+        {id:'it_f3',obj:'bundle',x:1,y:1,item:'gedoku',flag:'it_f3'},{id:'it_f4',obj:'bundle',x:18,y:4,item:'ootsuyu',flag:'it_f4'}]},
+ iwayama:{name:'いしづみ町',out:1,music:'town',rows:[
   "TTTTTTTTTTTTTTTTTTTT","T..................T","T.RRRRRR....RRRR...T","T.RRRRRR....RRRR...T","T.KKGDKK....WMDW...T","T......S...........T",
   "T==================T","T......=.......=...T","T.RRRR.=.RRRR..=...T","T.RRRR.=.RRRR..=...T","T.WPDW.=.WwDW..=...T","T......=.......=...T",
   "T..*...=..*....=...T","T==============....T","T........*.....=...T","T..............=...T","T..*...........=...T","TTTTTTTTTTTTTTTTT==T"],
   conn:{s:{to:'forest',dx:0}},
   warps:[{x:5,y:4,to:'gym',tx:5,ty:11,dir:'up'},{x:4,y:10,to:'center_i',tx:6,ty:7,dir:'up'},{x:14,y:4,to:'mart_i',tx:5,ty:6,dir:'up'},{x:11,y:10,to:'house_i',tx:3,ty:6,dir:'up'}],
-  signs:{'7,5':'イワヤマシティ モンスタージム\nリーダー ガンジ\nいわのように かたい おとこ！'},
-  npcs:[{spr:'man',x:8,y:5,walk:1,text:'ジムリーダーの ガンジは いわタイプの つかいて！ みずや くさの わざが よく きくぞ！ ほのおは いまひとつ… じめんや かくとうの わざも いいぞ！'},
-        {spr:'hiker',x:18,y:7,dir:'left',fixed:1,text:'この さきの おつきみとうげは いま こうじちゅう なんだ。 また こんど きてくれよな！'},
-        {spr:'girl',x:11,y:14,walk:1,text:'イワヤマシティへ ようこそ！ ここは いしと いわの まち なのよ。'}]},
- center_i:center('center_i','iwayama',4,11,[{spr:'old',x:9,y:4,walk:1,text:'モンスターが つかれたら いつでも ここで やすませると いい。 ただ なんじゃ。'}]),
- mart_i:mart('mart_i','iwayama',14,5,['ball','potion','superp','antid','parlz','awake','burnh']),
- house_i:house('house_i','iwayama',11,11,[{spr:'boy',x:5,y:3,dir:'left',text:'イシコロンは かたいけど すばやさは ひくいんだ。 さきに こうげき できれば こっちの もんさ！'}]),
- gym:{name:'イワヤマジム',music:'gym',rows:["##########","#B______B#","#B______B#","#BBB__BBB#","#________#","#_BBB_BB_#","#________#","#________#","#BB____BB#","#________#","#________#","#____m___#","##########"],
+  signs:{'7,5':'いわおの やしろ\nぬし イワオ\nいしを つみ こころを みがく ところ'},
+  npcs:[{spr:'man',x:8,y:5,walk:1,text:'やしろの ぬし イワオさまの ヤドリは 土の そうせい。 木の わざが よく きくぞ！ 水は 土に すいこまれて ききにくい。'},
+        {spr:'mason',x:18,y:7,dir:'left',fixed:1,text:'この さきの とうげは まだ こい きりの なかだ。 ふたつめの やしろへの みちは つぎの おはなし だな。'},
+        {spr:'girl',x:11,y:14,walk:1,text:'いしづみ町へ ようこそ！ この まちの いしがきは ぜんぶ イワオさまと ヤドリたちが つんだのよ。'}]},
+ center_i:inn('center_i','iwayama',4,11,[{spr:'old',x:9,y:4,walk:1,text:'やすらぎ堂は いつでも ただで つかえる。 むかしからの しまの ならわし じゃよ。'}]),
+ mart_i:shopMap('mart_i','iwayama',14,5,['ito','tsuyu','ootsuyu','gedoku','shibire','suzu','hiyashi']),
+ house_i:house('house_i','iwayama',11,11,[{spr:'boy',x:5,y:3,dir:'left',text:'コイシは かたいけど のろいんだ。 さきに こうげき できれば こっちの もんさ！'}]),
+ gym:{name:'いわおの やしろ',music:'gym',rows:["##########","#B______B#","#B______B#","#BBB__BBB#","#________#","#_BBB_BB_#","#________#","#________#","#BB____BB#","#________#","#________#","#____m___#","##########"],
   warps:[{x:5,y:11,to:'iwayama',tx:5,ty:5,dir:'down',mat:1}],
-  npcs:[{id:'leader',spr:'leader',x:5,y:1,dir:'down',fixed:1,talk:()=>leaderTalk()},
-        {spr:'hiker',x:2,y:7,dir:'right',trainer:{flag:'tr_g1',cls:'やまおとこ',name:'イサム',sight:6,party:[['ishikoron',10],['mimizun',11]],money:25,
-          intro:'ガンジさんに いどむのは 10ねん はやいぞ！',lose:'おまえ なかなか やるな！',after:'ガンジさんの ガンセキオーは ぼうぎょが すごいぞ。 とくしゅな わざで せめるんだ！'}},
+  npcs:[{id:'leader',spr:'guardian',x:5,y:1,dir:'down',fixed:1,talk:()=>leaderTalk()},
+        {spr:'mason',x:2,y:7,dir:'right',trainer:{flag:'tr_g1',cls:'いしくだき',name:'ガンタ',sight:6,party:[['koishi',10],['dorotabou',11]],money:25,
+          intro:'イワオさまに あう まえに おれの いしを くだいて みろ！',lose:'おれの いしが… くだけた…',after:'イワオさまの イシドウロウは まもりが かたい。 れいりょくで せめる じゅつが いいぞ。'}},
         {spr:'man',x:7,y:10,dir:'left',fixed:1,talk:()=>gymGuide()}]},
 };
 for(const id in MAPS){const m=MAPS[id];m.id=id;m.h=m.rows.length;m.w=m.rows[0].length;m.signs=m.signs||{};m.warps=m.warps||[];m.triggers=m.triggers||[];m.conn=m.conn||{};}
@@ -675,20 +677,20 @@ function interact(){
   const [dx,dy]=DIRS[P.dir], tx=P.x+dx, ty=P.y+dy;
   let e=entAt(tx,ty); if(!e&&(tileAt(tx,ty)==='c'||tileAt(tx,ty)==='t')) e=entAt(tx+dx,ty+dy);
   if(e){run(()=>talkTo(e));return;}
-  const sg=MAP.signs[`${tx},${ty}`]; if(sg){run(()=>say(sg));return;}
+  const sg=MAP.signs[`${tx},${ty}`]; if(sg){run(()=>say(typeof sg==='function'?sg():sg));return;}
   const t=tileAt(tx,ty);
   if(t==='p') run(pcMenu);
   else if(t==='b') run(()=>say('むずかしそうな ほんが ぎっしり ならんでいる。'));
-  else if(t==='v') run(()=>say('テレビで えいがを やっている！ しょうねんたちが せんろの うえを あるいている… ぼくも そろそろ いかなくちゃ！'));
-  else if(t==='h') run(()=>say('モンスターを げんきに する ふしぎな きかいだ。'));
+  else if(t==='v') run(()=>say('ラジオから まつりばやしが きこえてくる… ぴーひゃら どんどん。'));
+  else if(t==='h') run(()=>say('ちいさな ほこら。 あたたかい ひかりが ヤドリを いやすと いう。'));
 }
 async function talkTo(e){
   if(e.spr&&!e.fixed) e.dir=OPP[P.dir]; else if(e.spr&&e.fixed&&e.trainer) e.dir=OPP[P.dir];
   if(e.trainer&&!S.flags[e.trainer.flag]){e.dir=OPP[P.dir];return trainerFight(e);}
   if(e.trainer) return say(`${e.trainer.cls}の ${e.trainer.name}「${e.trainer.after}」`);
-  if(e.item){S.flags[e.flag]=1;addItem(e.item);SFX.buy();await say(`{P}は ${IT[e.item].n}を てにいれた！`);return;}
+  if(e.item){S.flags[e.flag]=1;addItem(e.item);SFX.buy();await say(`{P}は ${IT[e.item].n}を ひろった！`);return;}
   if(e.talk) return e.talk(e);
-  if(e.text) return say(e.text);
+  if(e.text) return say(typeof e.text==='function'?e.text():e.text);
 }
 function npcWander(){
   for(const e of ENTS){ if(!e.walk||e.mov) continue; if(--e.t>0) continue; e.t=ri(70,200);
@@ -700,7 +702,7 @@ async function run(fn){busy++;try{await fn();}catch(err){console.error(err);}fin
 function drawEnt(e,cx,cy){
   const p=entPx(e); const sx=p.x-cx, sy=p.y-cy-8-p.j;
   if(sx<-TS||sy<-TS||sx>W||sy>H) return;
-  if(e.obj==='ball'){ctx.drawImage(IMG_BALL,sx,sy+8,TS,TS);return;}
+  if(e.obj){ctx.drawImage(e.obj==='lantern'?IMG_KOCHO:IMG_BUNDLE,sx,sy+8,TS,TS);return;}
   const set=CH[e.spr]; if(!set) return; const fr=set[e.dir];
   let img=fr[0]; if(e.mov&&e.mov.t>e.mov.d*.25&&e.mov.t<e.mov.d*.85) img=(e.dir==='left'||e.dir==='right')?fr[1]:fr[1+e.phase];
   else if(e===P&&P.bumpT&&FR-P.bumpT<10) img=fr[1+P.phase];
@@ -712,159 +714,196 @@ function drawEnt(e,cx,cy){
 function drawWorld(){
   const pp=entPx(P), cx=pp.x-4*TS, cy=pp.y-4*TS;
   const tx0=Math.floor(cx/TS), ty0=Math.floor(cy/TS), af=(FR>>5)&1;
-  for(let ty=ty0;ty<=ty0+9;ty++)for(let tx=tx0;tx<=tx0+10;tx++){const fr=TILES[tileAt(tx,ty)]||TILES['X'];ctx.drawImage(fr[af%fr.length],tx*TS-cx,ty*TS-cy,TS,TS);}
+  for(let ty=ty0;ty<=ty0+9;ty++)for(let tx=tx0;tx<=tx0+10;tx++){const ch=tileAt(tx,ty);const fr=ch==='O'&&S.flags.lit?LANTERN_LIT:(TILES[ch]||TILES['X']);ctx.drawImage(fr[(ch==='O'?FR>>3:af)%fr.length],tx*TS-cx,ty*TS-cy,TS,TS);}
   const all=[...ENTS,P].sort((a,b)=>entPx(a).y-entPx(b).y);
   for(const e of all) drawEnt(e,cx,cy);
+  if(MAP.fog&&!S.flags.lit){for(let ty=MAP.fog[0];ty<=MAP.fog[1];ty++)for(let tx=tx0;tx<=tx0+10;tx++){ctx.globalAlpha=Math.min(.95,.62+.18*Math.sin(tx*.9+ty*1.3+FR/45)+(MAP.fog[1]-ty)*.08);ctx.fillStyle=PAL[0];ctx.fillRect(tx*TS-cx,ty*TS-cy,TS,TS);}ctx.globalAlpha=1;}
+  if(MAP.id==='town'&&!S.flags.lit){ctx.globalAlpha=.28;ctx.fillStyle=PAL[0];for(const ty of [0,1])for(let tx=tx0;tx<=tx0+10;tx++)ctx.fillRect(tx*TS-cx,ty*TS-cy,TS,TS);ctx.globalAlpha=1;}
   if(MAP_BANNER.t>0){MAP_BANNER.t--;ctx.font=FONT;drawBox(0,0,Math.min(320,ctx.measureText(MAP_BANNER.s).width+40),44);txt(MAP_BANNER.s,18,14);}
 }
 const MAP_BANNER={t:0,s:''};
 
 // ============================== STORY SCRIPTS ==============================
-const ballShown=sp=>S.flags.starter!==sp&&S.flags.rivalStarter!==sp;
-const COUNTER={hinokon:'mizumogu',mizumogu:'happaru',happaru:'hinokon'};
+const PARTNERS=['bonbori','shizuku','moegi'];
+const RIVAL_OF={bonbori:'shizuku',shizuku:'moegi',moegi:'bonbori'};
+const lanternShown=sp=>S.flags.starter!==sp&&S.flags.rivalStarter!==sp;
+async function healScene(){Music.paused=0;await fade(1,12,0);healAll();jingle('E5 G5 A5 C6 - A5 C6 -',.13,{vol:.35});await wait(70);await fade(0,12,0);}
+async function villageFog(){
+  await say('しろい きりが たちこめていて さきが まったく みえない…');
+  await say('（ひとりで いくのは あぶない。 トワばあちゃんの いおりは むらの みなみだ）');
+  await walk(P,'down');
+}
+async function townFog(){
+  await say('こい きりが みちを ふさいでいる。 これでは まえに すすめない…');
+  if(S.flags.flint) await say('（ひうちいしを トワばあちゃんに とどけよう）');
+  await walk(P,'down');
+}
 async function momTalk(){
-  if(!S.flags.starter){await say('ママ「…そうね。 おとこのこは いつか たびに でるもの。 テレビでも いってたわ」');await say('ママ「そうそう！ となりの カシワはかせが {P}を よんでいたわよ。 はかせの けんきゅうじょは まちの みなみがわね」');return;}
-  await say(`ママ「{P}！ ${NAME(S.party[0])}と いっしょなら あんしんね。 すこし やすんで いきなさい」`);
+  if(!S.flags.starter){await say('おかあさん「{P}、こよいは ともしびまつりよ。 トワばあちゃんが いおりで まってるって。 むらの みなみの おおきな いえね」');return;}
+  await say(`おかあさん「おかえり {P}。 ${NAME(S.party[0])}も いっしょね。 すこし やすんで いきなさい」`);
   await healScene(); S.lastHeal={map:'house1',x:4,y:5,dir:'up'};
-  await say('ママ「さあ げんきに なったわ！ いってらっしゃい！」');
+  await say('おかあさん「はい げんきに なった！ いってらっしゃい！」');
 }
-async function sisTalk(){
-  if(!S.flags.dex){await say('ナナ「あら {P}くん。 {R}なら はかせの ところに いったわよ。 おじいちゃんに よばれたんだって」');return;}
-  if(!S.flags.sisGift){S.flags.sisGift=1;await say('ナナ「たびに でるのね！ これ もっていって。 おまもり がわりよ」');addItem('potion',2);SFX.buy();await say('{P}は キズぐすりを 2こ もらった！');return;}
-  await say('ナナ「モンスターは たいせつに してあげてね。 なかよく なると きっと こたえて くれるわ」');
+async function smithTalk(){
+  if(!S.flags.lit){await say('かじやの おやじ「{R}なら とっくに トワさまの いおりへ とんでったぞ。 まったく まつりの ひは おちつきが ねえ」');return;}
+  if(!S.flags.smithGift){S.flags.smithGift=1;await say('かじやの おやじ「おお {P}！ おおとうろうに ひを いれたんだってな。 これ もっていけ。 たびの おともだ」');addItem('tsuyu',2);SFX.buy();await say('{P}は いやしのつゆを 2こ もらった！');return;}
+  await say('かじやの おやじ「{R}の やつ おまえに まけて くやしがってたぞ。 あいつは まけずぎらい だからな」');
 }
-async function healScene(){Music.paused=0;await fade(1,12,0);healAll();jingle('C5 E5 G5 C6 - G5 C6 -',.13,{vol:.35});await wait(70);await fade(0,12,0);}
-async function profStop(){
-  if(S.flags.labIntro){await say('カシワ「これ {P}！ まずは けんきゅうじょで モンスターを えらぶんじゃ！」');await walk(P,'down');return;}
-  Music.stop();
-  await say('？？？「おーい！ まて まて まってくれー！」');
-  const prof={spr:'prof',x:P.x,y:P.y+3,dir:'up',temp:1,mov:null,phase:0};ENTS.push(prof);
-  P.dir='down'; SFX.alert(); P.emote=40; await wait(40);
-  await walk(prof,'up',2);
-  await say('カシワ「あぶない ところ だった！ くさむらには やせいの モンスターが とびだしてくる！ じぶんの モンスターを もたずに はいるのは きけん なんじゃ！」');
-  await say('カシワ「ちょうど よかった。 わしの けんきゅうじょまで ついてきなさい！」');
-  S.flags.labIntro=1;
-  await warpTo('lab',5,4,'up');
-  await say('{R}「じいさん！ まちくたびれたぜ！」');
-  await say('カシワ「{R}か？ …そうか わしが よびだしたんじゃったな。 まあ まて」');
-  await say('カシワ「さて {P}！ そこの テーブルに モンスターボールが 3つ あるじゃろう」');
-  await say('カシワ「なかには モンスターが はいっておる！ わしも むかしは バリバリの トレーナー だった。 いまは この 3びきしか おらんが… すきな やつを 1ぴき えらびなさい！」');
-  await say('{R}「あっ！ ずるいぞ じいさん！ おれにも くれよー！」');
-  await say('カシワ「あわてるな {R}！ おまえにも あとで えらばせて やる」');
+function lanternTalk(){
+  if(S.flags.starter) return say('こぢょうちんの なかで ちいさな ひが ゆれている。');
+  return towaTalk();
 }
-async function pickStarter(sp){
-  if(S.flags.starter){await say('カシワはかせの だいじな モンスターボールだ。');return;}
-  if(!S.flags.labIntro){await say('カシワはかせの モンスターボールだ。 かってに あけては いけない…');return;}
-  const s=SPI[sp]; const prev=staticBox(()=>{drawBox(96,24,128,128);ctx.drawImage(MONIMG[sp],112,40,96,96);});
-  const yes=await ask(`カシワ「${s.t[0]}タイプの モンスター ${s.n}に するのか？」`);
-  pop(prev); if(!yes) return;
+async function towaTalk(){
+  if(!S.flags.met) return towaIntro();
+  if(!S.flags.starter) return towaIntro();
+  if(S.flags.flint&&!S.flags.lit) return lightingScene();
+  if(!S.flags.lit){await say('トワ「しおさい町の よろず屋に ひうちいしを たのんで あるんだよ。 わたげの こみちを きたへ ぬければ すぐさ」');return;}
+  const s=seenN(),c=caughtN();
+  const cm=c<4?'まだまだ これからだね。 くさむらで いろんな ヤドリと であって ごらん':c<8?'いい ちょうしだ。 くらやみの もりには めずらしい ヤドリも いるよ':c<12?'たいした もんだ。 わたしが わかい ころより はやいかもしれないね':'おどろいた… おまえさんは しまじゅうの ヤドリと こころを かよわせられるよ';
+  await say(`トワ「ヤドリちょうを みせて ごらん。 …${s}にん と であって ${c}にん と ちぎりを むすんだ かい。 ${cm}」`);
+}
+async function towaIntro(){
+  S.flags.met=1;
+  await say('トワ「よう きたね {P}。 こよいは ともしびまつり。 まつりの まえに だいじな はなしが あるんだよ」');
+  await say('トワ「この しまでは ふるい どうぐや しぜんの ものに いのちが やどる。 わたしらは それを ヤドリと よんで ともに くらしてきた」');
+  await say('トワ「ところが ひとつき まえ むらの おおとうろうの ひが きえて しまってね。 それから むらの まわりは きりに つつまれ ヤドリたちも おちつかない」');
+  await say('トワ「そこの こぢょうちんには まいごの ヤドリが みっつ やすんでいる。 こころが かよえば きっと こたえて くれるはずさ」');
+  await say('{R}「ばあちゃん！ おれも おれも！」');
+  await say('トワ「じゅんばんだよ {R}。 さあ {P}… いくつか きかせて おくれ」');
+  const sp=await partnerQuiz();
+  await bindPartner(sp);
+}
+async function partnerQuiz(){
+  const score={bonbori:0,shizuku:0,moegi:0};
+  const Q=[
+    ['まつりの よる。 さいしょに むかうのは？',['やたいの ひの まえ','いけの ほとり','ごしんぼくの した']],
+    ['ともだちが ないている。 どうする？',['いっしょに おこる','だまって そばに いる','はなを つんで わたす']],
+    ['いちばん すきな じかんは？',['まひるの おひさま','あめあがりの ゆうがた','しずかな あさ']],
+  ];
+  let lastPick=0;
+  for(const [q,opts] of Q){
+    const L=await say(`トワ「${q}」`,{keep:true});
+    const k=await menu(opts,{x:56,y:64,w:264,cancel:false}); pop(L);
+    score[PARTNERS[k]]++; lastPick=k;
+  }
+  let best=PARTNERS[lastPick]; for(const p of PARTNERS) if(score[p]>score[best]) best=p;
+  return best;
+}
+async function bindPartner(sp){
+  const show=k=>staticBox(()=>{drawBox(96,24,128,128);ctx.drawImage(MONIMG[k],112,40,96,96);});
+  await say('…こぢょうちんの ひとつが ふわりと うかびあがった！');
+  let box=show(sp); SFX.alert();
+  await say(`なかから ${SPI[sp].n}が とびだした！ じっと {P}を みつめている…`);
+  let ok=await ask(`トワ「${SPI[sp].t[0]}の ヤドリ ${SPI[sp].n}が おまえさんを えらんだ ようだね。 ちぎりを むすぶかい？」`);
+  pop(box);
+  if(!ok){
+    await say('トワ「ふむ。 それなら じぶんの めで えらんで ごらん」');
+    while(true){
+      let cur=0; const pv=staticBox(()=>{drawBox(176,24,128,128);ctx.drawImage(MONIMG[PARTNERS[cur]],192,40,96,96);});
+      const k=await menu(PARTNERS.map(p=>`${SPI[p].n}（${SPI[p].t[0]}）`),{x:0,y:24,w:176,cancel:false,onMove:c=>cur=c}); pop(pv);
+      box=show(PARTNERS[k]);
+      ok=await ask(`${SPI[PARTNERS[k]].n}と ちぎりを むすぶ？`); pop(box);
+      if(ok){sp=PARTNERS[k];break;}
+    }
+  }
   const m=mkMon(sp,5); giveMon(m); S.flags.starter=sp;
-  await say(`カシワ「この ${s.n}は ほんとうに げんきが いいぞ！」`);
-  jingle('G5 - E5 G5 C6 - - -',.12,{vol:.35});
-  await say(`{P}は カシワはかせから ${s.n}を もらった！`);
-  const rs=COUNTER[sp]; S.flags.rivalStarter=rs;
-  const rv=ENTS.find(e=>e.id==='rival'); if(rv){faceToward(rv,{x:ENTS.find(e=>e.id==='ball_'+rs).x,y:3});}
-  await say(`{R}「じゃあ おれは これに きめた！」`);
+  jingle('A5 - E5 A5 C6 - - -',.12,{vol:.35});
+  await say(`{P}は ${SPI[sp].n}と ちぎりを むすんだ！`);
+  const rs=RIVAL_OF[sp]; S.flags.rivalStarter=rs;
+  await say('{R}「あっ！ こっちの こぢょうちんも ひかった！」');
   refreshEnts();
-  await say(`{R}は カシワはかせから ${SPI[rs].n}を もらった！`);
+  await say(`${SPI[rs].n}が {R}の かたに ちょこんと とびのった！`);
+  await say('トワ「ふたりとも ヤドリと ちぎりを むすんだね。 だいじに するんだよ」');
 }
 async function rivalBattle1(){
   Music.stop();
   const rv=ENTS.find(e=>e.id==='rival');
-  await say('{R}「まてよ {P}！ せっかく じいさんに モンスターを もらったんだ！」');
-  if(rv){P.dir='up';faceToward(rv,P);rv.emote=40;SFX.alert();await wait(30);while(Math.abs(rv.x-P.x)+Math.abs(rv.y-P.y)>1){const dx=P.x-rv.x,dy=P.y-rv.y;const d=Math.abs(dx)>0&&!blocked(rv.x+Math.sign(dx),rv.y,rv)?(dx>0?'right':'left'):(dy>0?'down':'up');if(blocked(rv.x+DIRS[d][0],rv.y+DIRS[d][1],rv))break;await walk(rv,d);}faceToward(rv,P);faceToward(P,rv);}
-  await say('{R}「ちょっと しょうぶ してみようぜ！」');
-  const r=await battle({kind:'trainer',noWhiteout:1,trainer:{cls:'ライバル',name:'{R}',money:35,lose:'なにい！？ くそー！ えらぶ モンスター まちがえたぜ！',win:'やったー！ おれって やっぱり てんさい！'},party:[[S.flags.rivalStarter,5]]});
+  await say('{R}「まった {P}！ せっかく ヤドリと ちぎりを むすんだんだ！」');
+  if(rv){P.dir='up';faceToward(rv,P);rv.emote=40;SFX.alert();await wait(30);
+    while(Math.abs(rv.x-P.x)+Math.abs(rv.y-P.y)>1){const dx=P.x-rv.x,dy=P.y-rv.y;const d=Math.abs(dx)>0&&!blocked(rv.x+Math.sign(dx),rv.y,rv)?(dx>0?'right':'left'):(dy>0?'down':'up');if(blocked(rv.x+DIRS[d][0],rv.y+DIRS[d][1],rv))break;await walk(rv,d);}
+    faceToward(rv,P);faceToward(P,rv);}
+  await say('{R}「どっちが つよいか ちからくらべ しようぜ！」');
+  const r=await battle({kind:'trainer',noWhiteout:1,trainer:{cls:'おさななじみ',name:'{R}',money:35,lose:'うそだろ！？ くっそー… まつりの ひに まけるなんて！',win:'へへーん！ やっぱり おれの ほうが うえだな！'},party:[[S.flags.rivalStarter,5]]});
   S.flags.rival1=1;
-  await say(r==='win'?'{R}「ちぇっ！ もっと モンスターを きたえてやる！」':'{R}「へへーん！ おれの かちだぜ！」');
-  await say('{R}「{P}！ じいさん！ あばよー！」');
+  await say(r==='win'?'{R}「ちぇっ！ もっと きたえて こんどは まけないからな！」':'{R}「おまえも なかなか だったぜ！ でも おれの かち！」');
+  await say('{R}「ばあちゃん！ まつりの じゅんび てつだって くる！」');
   if(rv){rv.temp=1;while(rv.y<9&&!blocked(rv.x,rv.y+1,rv))await walk(rv,'down');ENTS=ENTS.filter(e=>e!==rv);}
   SFX.door();
-  await say('カシワ「ふむ… モンスターは たたかわせて そだてる ものなんじゃ。 どれ げんきに してやろう」');
+  await say('トワ「やれやれ… ヤドリは ちからくらべを とおして つよく なるのさ。 どれ やすませて あげよう」');
   await healScene();
-  await say('カシワ「1ばんどうろの さきに コダマシティが ある。 モンスターと いっしょに いってみなさい！」');
+  await say('トワ「さて {P}。 おおとうろうに ひを ともすには ひうちいしが いる。 しおさい町の よろず屋に たのんで あるんだ」');
+  await say('トワ「わたげの こみちを きたへ ぬければ しおさい町だよ。 とってきて おくれ。 ヤドリと いっしょなら むらの きりも こわくない」');
   Music.play('town');
 }
-async function profTalk(){
-  if(!S.flags.starter){await say('カシワ「さあ すきな モンスターを えらびなさい！」');return;}
-  if(S.flags.parcel&&!S.flags.dex) return dexScene();
-  if(!S.flags.dex){await say('カシワ「くさむらに はいれば やせいの モンスターが でてくる。 たたかって きたえるんじゃ！ コダマシティは きたの 1ばんどうろを ぬけた さきじゃよ」');return;}
-  const s=seenN(),c=caughtN();
-  const cm=c<4?'まだまだ これから じゃな！ くさむらで もっと さがしてみなさい':c<8?'なかなか いい ちょうしじゃ！ もりのみちには めずらしい モンスターも いるぞ':c<12?'すばらしい！ わしの わかい ころより はやいかもしれん！':'なんと…！ きみなら きっと ずかんを かんせい させられる！';
-  await say(`カシワ「ずかんの ちょうしは どうじゃ？ …ふむ ${s}ひき みつけて ${c}ひき つかまえたか！ ${cm}」`);
-}
-async function dexScene(){
-  await say('カシワ「おお {P}！ なに？ わしに とどけもの？」');
-  delete S.bag.parcel;
-  await say('{P}は おとどけものを わたした！');
-  await say('カシワ「これは わしが たのんで おいた とくべつ せいの モンスターボール じゃな！ ありがとう！」');
+async function lightingScene(){
+  await say('トワ「おお ひうちいし！ ごくろうさん」');
+  delete S.bag.flint;
+  await say('{P}は ひうちいしを わたした！');
+  await say('トワ「では… まつりを はじめると しようか」');
+  await fade(1,24,3); Music.stop();
+  for(let i=0;i<3;i++){tone(1800-i*200,.08,{vol:.3});await wait(14);}
+  await wait(30); S.flags.lit=1; jingle('E5 G5 A5 C6 - D6 E6 - - -',.14,{vol:.35});
+  scene='black';
+  await say('カーン… カーン…');
+  await say('むらの おおとうろうに あかりが ともった！ むらを つつんでいた きりが すうっと はれていく…');
+  scene='world'; await fade(0,24,3); Music.play('town');
   const rv={spr:'rival',x:5,y:9,dir:'up',temp:1,mov:null,phase:0};ENTS.push(rv);SFX.door();
-  await walk(rv,'up',Math.max(0,8-P.y>0?1:1));
-  await say('{R}「じいさん！ よびだしって なんだよ？」');
-  await say('カシワ「おお {R}も きたか！ ちょうど いい。 ふたりに たのみが あるんじゃ」');
-  await say('カシワ「これは モンスターずかん！ みつけた モンスターや つかまえた モンスターの データが じどうで かきこまれる ハイテクな ずかん じゃ！」');
-  jingle('G5 - E5 G5 C6 - - -',.12,{vol:.35});
-  await say('{P}は カシワはかせから モンスターずかんを もらった！');
+  await walk(rv,'up');
+  await say('{R}「ばあちゃん！ そとが あかるく なったぜ！ きりも ぜんぶ きえた！」');
+  await say('トワ「ふたりに これを わたそう。 ヤドリちょう… であった ヤドリの ことが しぜんと しるされる ふしぎな ちょうめん さ」');
+  jingle('A5 - E5 A5 C6 - - -',.12,{vol:.35});
+  await say('{P}は ヤドリちょうを うけとった！');
   S.flags.dex=1;
-  await say('カシワ「それから これも もっていきなさい。 さっきの ボールじゃ」');
-  addItem('ball',5);SFX.buy();
-  await say('{P}は モンスターボールを 5こ もらった！');
-  await say('カシワ「せかいじゅうの モンスターを きろくした かんぺきな ずかんを つくること！ それが わしの ゆめ じゃった。 しかし わしは もう としじゃ… たのんだぞ ふたりとも！」');
-  await say('{R}「まかせとけ じいさん！ {P}には まけないぜ！ じゃあな！」');
+  await say('トワ「それと むすびいと。 こころを かよわせた のらの ヤドリに なげれば ちぎりを むすべる」');
+  addItem('ito',5);SFX.buy();
+  await say('{P}は むすびいとを 5こ うけとった！');
+  await say('トワ「なげる まえに「なだめる」で こころを おちつかせると むすびやすい。 よわらせすぎるのは かわいそう だからね」');
+  await say('トワ「この しまには よっつの やしろが あって それぞれの ぬしが ともしびを まもっている。 いちばん ちかいのは いしづみ町の いわおの やしろ」');
+  await say('トワ「ぬしに みとめられたら ともしびを わけて もらえるはず。 きりの もとを たどる てがかりにも なるだろう」');
+  await say('{R}「よーし！ さきに ともしびを もらうのは おれだ！ じゃあな {P}！」');
   while(rv.y<9) await walk(rv,'down'); ENTS=ENTS.filter(e=>e!==rv); SFX.door();
-  await say('カシワ「ボールは やせいの モンスターに なげて つかう。 あいてを よわらせてから なげるのが コツじゃ。 コダマシティの ショップでも かえるぞ」');
 }
 async function route1Clerk(){
-  if(!S.flags.r1gift){S.flags.r1gift=1;await say('「やあ！ ぼくは コダマシティの ショップの てんいん。 これ おためしで どうぞ！」');addItem('potion');SFX.buy();await say('{P}は キズぐすりを もらった！');return;}
-  await say('「コダマシティの ショップにも ぜひ よってね！」');
+  if(!S.flags.r1gift){S.flags.r1gift=1;await say('「やあ！ しおさい町の よろず屋の もんだよ。 まつりの ひだから おまけ！」');addItem('tsuyu');SFX.buy();await say('{P}は いやしのつゆを もらった！');return;}
+  await say('「しおさい町の よろず屋にも ぜひ よってね！」');
 }
-async function oldManBlock(){
-  const om=ENTS.find(e=>e.id==='oldman'); if(om){faceToward(om,P);}
-  await say('おじいさん「こら！ この さきは わしの にわ じゃ！ とおっては ならん！」');
-  await say('おじいさん「…わしは まだ あさの コーヒーを のんで おらんのじゃ…」');
-  await walk(P,'down'); if(om) om.dir='down';
-}
-async function oldManTalk(){
-  if(!S.flags.dex){await say('おじいさん「…むにゃむにゃ。 コーヒーを のむまでは うごかんぞ…」');return;}
-  await say('おじいさん「おお さっきは すまんかったのう。 コーヒーを のんだら すっかり げんきに なったわい！」');
-  await say('おじいさん「ひとつ おしえて やろう。 モンスターは HPを へらしてから ボールを なげると つかまえやすい。 ねむらせたり まひ させれば なおさら じゃ！」');
-}
-async function nurseTalk(id){
-  await say('「モンスターセンターへ ようこそ！ ここでは モンスターの たいりょくを かいふく いたします」');
-  if(await ask('「あなたの モンスターを やすませて あげますか？」')){
-    await say('「それでは あずからせて いただきます！」',{auto:30});
+async function keeperTalk(id){
+  await say('堂守「やすらぎ堂へ ようこそ。 ここでは つかれた ヤドリを やすませる ことが できます」');
+  if(await ask('堂守「あなたの なかまを やすませますか？」')){
+    await say('堂守「では おあずかり しますね」',{auto:30});
     await healScene();
     S.lastHeal={map:id,x:5,y:3,dir:'up'};
-    await say('「おまちどうさまでした！ おあずかりした モンスターは みんな げんきに なりましたよ！」');
+    await say('堂守「おまたせしました。 みんな すっかり げんきに なりましたよ」');
   }
-  await say('「またの ごりようを おまちしてます！」');
+  await say('堂守「よい たびを」');
 }
 async function clerkTalk(id,stock){
-  if(id==='mart_k'&&!S.flags.parcel){
-    await say('「いらっしゃいませ！ …おや？ きみ ハジマリタウンの ひと だよね？」');
-    await say('「ちょうど よかった！ カシワはかせに たのまれた しなものが とどいて いるんだ。 はかせに わたして くれないかな？」');
-    S.flags.parcel=1; addItem('parcel'); SFX.buy();
-    await say('{P}は おとどけものを あずかった！'); return;
+  if(id==='mart_k'&&S.flags.starter&&!S.flags.flint&&!S.flags.lit){
+    await say('よろず屋「いらっしゃい！ …おや その かお。 ひだまり村の こだね？」');
+    await say('よろず屋「トワさまに たのまれてた ひうちいし だろう？ ちょうど とどいた ところさ。 もっていって おくれ」');
+    S.flags.flint=1; addItem('flint'); SFX.buy();
+    await say('{P}は ひうちいしを うけとった！');
+    await say('よろず屋「きりが はれたら また かいものに おいで。 むすびいとも たくさん しいれて おくからね」'); return;
   }
-  if(id==='mart_k'&&!S.flags.dex){await say('「カシワはかせに おとどけものを わたしてね！ よろしく たのむよ！」');return;}
+  if(id==='mart_k'&&!S.flags.lit){await say('よろず屋「きりで ふねが こなくてね… しなものが そろうまで まっておくれ」');return;}
   await shop(stock);
 }
 async function gymGuide(){
-  if(S.badges.includes('いわ')){await say('「やったな！ チャンピオンへの みちは まだまだ ながいぞ。 でも きみなら きっと だいじょうぶだ！」');return;}
-  await say('「おーい！ ジムリーダーに いどむ きみ！ ガンジの モンスターは いわと じめん タイプ。 みずや くさの わざが こうかばつぐん！ ほのおや でんきは にがてだぞ！」');
-  await say('「ここで いちど モンスターセンターで やすんで おくのも わすれずにな！ レベルは 12 いじょうが めやす だ！」');
+  if(S.badges.includes('いわおの灯')){await say('「ともしびを もらったな！ のこる やしろは あと みっつ。 きりの むこうで まっているぞ」');return;}
+  await say('「おう たびびと！ イワオさまの ヤドリは 土の そうせい。 木の わざが よく きく！ 水は 土に すいこまれて ききにくいぞ」');
+  await say('「まずは やすらぎ堂で なかまを やすませて おくと いい。 レベル 12 くらいが めやす だな！」');
 }
 async function leaderTalk(){
-  if(S.badges.includes('いわ')){await say('ガンジ「いわのバッジを もつ トレーナーよ。 この さきの たびでも かたい いしで すすめ！」');return;}
-  await say('ガンジ「おれは イワヤマジムの リーダー ガンジ！ いわのように かたい いしと… がまんづよさ！ それが おれの モットーだ！」');
-  await say('ガンジ「おまえの ほんきを みせてみろ！ さあ かかってこい！」');
-  const r=await battle({kind:'trainer',leader:1,trainer:{cls:'ジムリーダー',name:'ガンジ',money:100,potion:1,lose:'…まいった！ おまえの つよさは ほんものだ！'},party:[['ishikoron',12],['gansekio',13]]});
+  if(S.badges.includes('いわおの灯')){await say('イワオ「いわおの灯を もつ ものよ。 いしを つむように いっぽずつ すすむのだ」');return;}
+  await say('イワオ「わしは いわおの やしろの ぬし イワオ。 この やしろの ともしびは ちからと こころを そなえた ものにしか わたせん」');
+  await say('イワオ「おまえさんと ヤドリの きずな… みせて もらおう！」');
+  const r=await battle({kind:'trainer',leader:1,trainer:{cls:'やしろの ぬし',name:'イワオ',money:100,potion:1,lose:'…みごと。 いしよりも かたい きずな じゃった'},party:[['koishi',12],['ishidourou',13]]});
   if(r!=='win') return;
-  S.badges.push('いわ');
-  await say('ガンジ「みごとだ！ ジムに かった しるしに この いわのバッジを うけとって くれ！」');
-  jingle('C5 E5 G5 C6 - E6 - C6 - - -',.13,{vol:.35});
-  await say('{P}は ガンジから いわのバッジを もらった！');
-  await say('ガンジ「この さきには もっと つよい トレーナーが まっている。 モンスターと いっしょに どこまでも いけ！」');
+  S.badges.push('いわおの灯');
+  await say('イワオ「やくそくじゃ。 この やしろの ともしびを わけよう」');
+  jingle('E5 A5 C6 E6 - D6 - E6 - - -',.13,{vol:.35});
+  await say('{P}は 「いわおの灯」を うけとった！ ちいさな ほのおが あたたかく ゆれている…');
+  await say('イワオ「きりは しまの まんなかの やまから ながれてきて おる。 のこる みっつの やしろの ぬしも きっと なにかを しって おるはずじゃ」');
   await endingScreen();
 }
 async function rivalBattle2(){
@@ -875,10 +914,10 @@ async function rivalBattle2(){
   await say('{R}「おーい {P}！」');
   faceToward(rv,P);faceToward(P,rv);
   await say('{R}「もりを ぬけて きたのか！ おれも いま ぬけた ところ さ。 どれだけ つよく なったか ためして やるぜ！」');
-  const r=await battle({kind:'trainer',trainer:{cls:'ライバル',name:'{R}',money:35,lose:'うそだろ！？ おれが まけるなんて！'},party:[['kotorin',9],[S.flags.rivalStarter,10]]});
+  const r=await battle({kind:'trainer',trainer:{cls:'おさななじみ',name:'{R}',money:35,lose:'また まけた！？ おまえ いつのまに…！'},party:[['yodaka',9],[S.flags.rivalStarter,10]]});
   if(r!=='win') return;
   S.flags.rival2=1;
-  await say('{R}「ちぇっ… イワヤマジムの ガンジは つよいぞ！ おれは もう いわのバッジ もらったけどな！ じゃあな！」');
+  await say('{R}「ちぇっ… イワオさんは とんでもなく かたいぞ。 おれは いちど はねかえされた。 …つぎは ぜったい かつけどな！」');
   while(rv.y>0&&!blocked(rv.x,rv.y-1,rv)) await walk(rv,'up');
   ENTS=ENTS.filter(e=>e!==rv); Music.play(MAP.music);
 }
@@ -889,35 +928,34 @@ const sm=n=>n>=0?(2+n)/2:2/(2-n);
 const bsay=(t,auto=55)=>say(t,{auto});
 async function battleTransition(){Music.play('battle');for(let i=0;i<3;i++){FADE.col=3;FADE.a=.8;await wait(4);FADE.a=0;await wait(4);}TR.t=1;for(let i=0;i<=24;i++){TR.t=i/24;await wait(1);}}
 function newStages(){return {atk:0,def:0,spd:0,spc:0,acc:0,eva:0};}
-const eName=()=>(B.kind==='wild'?'やせいの ':'てきの ')+NAME(B.e);
-const tTitle=()=>fmt(`${B.trainer.cls}の ${B.trainer.name}`);
+const eName=()=>(B.kind==='wild'?'のらの ':'あいての ')+NAME(B.e);
+const tTitle=()=>fmt(`${B.trainer.cls} ${B.trainer.name}`);
 async function battle(o){
   const prevMusic=MAP?MAP.music:'town';
   await battleTransition();
   if(o.leader) Music.play('leader');
   const party=o.kind==='wild'?[o.mon]:o.party.map(([sp,lv])=>mkMon(sp,lv));
-  B={kind:o.kind,trainer:o.trainer,party,ei:0,e:party[0],pi:-1,p:null,st:{p:newStages(),e:newStages()},eX:-120,eDrop:0,pDrop:0,pScale:0,eH:party[0].hp,pH:0,blink:null,shake:0,ball:null,eHidden:false,partic:new Set(),runs:0,usedPotion:false,lv:new Set()};
+  B={kind:o.kind,trainer:o.trainer,party,ei:0,e:party[0],pi:-1,p:null,st:{p:newStages(),e:newStages()},eX:-120,eDrop:0,pDrop:0,pScale:0,eH:party[0].hp,pH:0,blink:null,shake:0,ball:null,eHidden:false,partic:new Set(),runs:0,usedPotion:false,lv:new Set(),calm:0};
   scene='battle'; TR.t=0;
   for(let i=0;i<=40;i++){B.eX=-120+(192+120)*i/40;await wait(1);}
   S.seen[B.e.sp]=1;
-  if(o.kind==='wild') await say(`あっ！ やせいの ${NAME(B.e)}が とびだしてきた！`);
-  else {await say(`${tTitle()}が しょうぶを しかけてきた！`); await bsay(`${tTitle()}は ${NAME(B.e)}を くりだした！`);}
+  if(o.kind==='wild') await say(`がさがさっ！ のらの ${NAME(B.e)}が すがたを みせた！`);
+  else {await say(`${tTitle()}が ちからくらべを いどんできた！`); await bsay(`${tTitle()}は ${NAME(B.e)}を よびだした！`);}
   await sendOut(S.party.findIndex(m=>m.hp>0));
   let result=null;
   while(!result){const act=await chooseAction(); result=await doTurn(act);}
-  // aftermath
   if(result==='win'&&o.kind==='trainer'){
     Music.play('victory');
-    await say(`${tTitle()}との しょうぶに かった！`);
+    await say(`${tTitle()}との ちからくらべに かった！`);
     if(B.trainer.lose) await say(fmt(`${B.trainer.name}「${B.trainer.lose}」`));
     const prize=B.trainer.money*Math.max(...B.party.map(m=>m.lv)); S.money+=prize;
-    await say(`{P}は ${prize}えん てにいれた！`);
+    await say(`{P}は おれいに ${prize}文 うけとった！`);
   } else if(result==='lose'&&o.noWhiteout&&B.trainer){ if(B.trainer.win) await say(fmt(`${B.trainer.name}「${B.trainer.win}」`)); }
   const evolvers=[...B.lv].map(i=>S.party[i]).filter(m=>m&&m.hp>0&&SPI[m.sp].evo&&m.lv>=SPI[m.sp].evo[0]);
-  await fade(1,12,0); scene='world'; B=null; for(const m of S.party) delete m._st;
+  await fade(1,12,0); scene='world'; B=null;
   if(result==='lose'&&!o.noWhiteout){
     await wait(10); await fade(0,1,0);
-    scene='black'; await say('{P}の てもとには たたかえる モンスターが いない！'); await say('{P}は めのまえが まっくらに なった！');
+    scene='black'; await say('なかまは みんな うごけなく なって しまった…'); await say('{P}は なかまを だきかかえて いそいで ひきかえした！');
     S.money=Math.floor(S.money/2); healAll(); loadMap(S.lastHeal.map,S.lastHeal.x,S.lastHeal.y,S.lastHeal.dir); scene='world';
     await fade(1,1,0); await fade(0,16,0); return result;
   }
@@ -929,22 +967,26 @@ async function battle(o){
 async function wildEncounter(){
   const tbl=MAP.enc; let r=rnd()*tbl.reduce((a,x)=>a+x[3],0), ent=tbl[0];
   for(const x of tbl){r-=x[3];if(r<=0){ent=x;break;}}
-  const mon=mkMon(ent[0],ri(ent[1],ent[2]));
-  await battle({kind:'wild',mon});
+  await battle({kind:'wild',mon:mkMon(ent[0],ri(ent[1],ent[2]))});
 }
 async function sendOut(i){
-  if(B.p&&B.pi>=0){await bsay(`もどれ！ ${NAME(B.p)}！`,30);for(let k=0;k<=10;k++){B.pScale=1-k/10;await wait(1);}}
+  if(B.p&&B.pi>=0){await bsay(`${NAME(B.p)}、もどって！`,30);for(let k=0;k<=10;k++){B.pScale=1-k/10;await wait(1);}}
   B.pi=i;B.p=S.party[i];B.pH=B.p.hp;B.st.p=newStages();B.partic.add(i);B.pDrop=0;
   SFX.ball(); for(let k=0;k<=12;k++){B.pScale=k/12;await wait(1);}
-  await bsay(`ゆけっ！ ${NAME(B.p)}！`,40);
+  await bsay(`たのんだよ ${NAME(B.p)}！`,40);
 }
-function battleMenu(){return new Promise(res=>{let c=B.lastCmd||0;const lab=['たたかう','どうぐ','いれかえ','にげる'];
-  const L={draw(){drawBox(0,192,320,96);txt(`${NAME(B.p)}は`,18,212);txt('どうする？',18,244);drawBox(124,192,196,96);
-      lab.forEach((s,i)=>{const x=150+(i%2)*84,y=214+Math.floor(i/2)*32;txt(s,x,y);if(i===c)txt('▶',x-18,y);});},
-    update(){if(pressed('left')||pressed('right')){c^=1;SFX.menu();}if(pressed('up')||pressed('down')){c^=2;SFX.menu();}
+// 5 commands: row1 たたかう なだめる にげる / row2 どうぐ なかま
+const CMDS=[['たたかう',0,0],['なだめる',1,0],['にげる',2,0],['どうぐ',0,1],['なかま',1,1]];
+function battleMenu(){return new Promise(res=>{let c=B.lastCmd||0;
+  const L={draw(){drawBox(0,192,320,96);
+      CMDS.forEach(([s,cx,cy],i)=>{const x=34+cx*100,y=214+cy*34;txt(s,x,y,B.kind!=='wild'&&i===1?1:3);if(i===c)txt('▶',x-18,y);});
+      txt(`${NAME(B.p)}は どうする？`,222,252,2,FONT_S);},
+    update(){const [_,cx,cy]=CMDS[c];let nx=cx,ny=cy;
+      if(pressed('left'))nx=(cx+2)%3; else if(pressed('right'))nx=(cx+1)%3; else if(pressed('up')||pressed('down'))ny=1-cy;
+      if(nx!==cx||ny!==cy){if(ny===1&&nx===2)nx=1;c=CMDS.findIndex(x=>x[1]===nx&&x[2]===ny);SFX.menu();}
       if(pressed('a')){SFX.blip();B.lastCmd=c;pop(L);res(c);}}};push(L);});}
 function fightMenu(){return new Promise(res=>{const mv=B.p.moves;let c=Math.min(B.lastMove||0,mv.length-1);
-  const L={draw(){drawBox(0,192,112,96);const m=mv[c],M=MV[m.id];txt('タイプ/',14,204,3,FONT_S);txt(M.t,20,222);txt(`PP ${m.pp}/${M.pp}`,14,252,3,FONT_S);
+  const L={draw(){drawBox(0,192,112,96);const m=mv[c],M=MV[m.id];txt(M.s?'じゅつ':'わざ',14,204,3,FONT_S);txt(`${M.t}の そう`,14,222);txt(`のこり ${m.pp}/${M.pp}`,14,252,3,FONT_S);
       drawBox(104,192,216,96);mv.forEach((m,i)=>{txt(MV[m.id].n,138,203+i*20);if(i===c)txt('▶',120,203+i*20);});},
     update(){if(rep('down')){c=(c+1)%mv.length;SFX.menu();}if(rep('up')){c=(c+mv.length-1)%mv.length;SFX.menu();}
       if(pressed('a')){SFX.blip();B.lastMove=c;pop(L);res(c);}if(pressed('b')){pop(L);res(-1);}}};push(L);});}
@@ -954,44 +996,55 @@ async function chooseAction(){
     if(c===0){
       if(B.p.moves.every(m=>m.pp<=0)){await bsay(`${NAME(B.p)}は もう だせる わざが ない！`);return {type:'fight',move:'struggle'};}
       const mi=await fightMenu(); if(mi<0) continue;
-      if(B.p.moves[mi].pp<=0){await say('わざの のこり ポイントが ない！');continue;}
+      if(B.p.moves[mi].pp<=0){await say('その わざは もう つかえない！');continue;}
       return {type:'fight',move:mi};
     }
-    if(c===1){
+    if(c===1){ if(B.kind!=='wild'){await say('あいての なかまは {P}の ことばに みみを かさない…');continue;} return {type:'calm'}; }
+    if(c===2){ if(B.kind!=='wild'){await say('ちからくらべの とちゅうで にげだす わけには いかない！');continue;} return {type:'run'}; }
+    if(c===3){
       const ids=bagIds(true); if(!ids.length){await say('つかえる どうぐを もっていない！');continue;}
       const k=await menu(ids.map(id=>({l:IT[id].n,r:'×'+S.bag[id]})),{x:64,y:0,w:256}); if(k<0) continue; const id=ids[k];
-      if(IT[id].ball){ if(B.kind!=='wild'){await say('だめだ！ ひとの モンスターを とったら どろぼう！');continue;} return {type:'ball',id}; }
-      const L=openParty({prompt:'どの モンスターに つかう？'}); const i=await L.choose(); pop(L); if(i<0) continue;
+      if(IT[id].ball){ if(B.kind!=='wild'){await say('ひとの なかまに いとを なげては いけない！');continue;} return {type:'ball',id}; }
+      const L=openParty({prompt:'だれに つかう？'}); const i=await L.choose(); pop(L); if(i<0) continue;
       const ok=await useOnMon(id,S.party[i]); if(!ok) continue; if(i===B.pi) B.pH=B.p.hp; return {type:'used'};
     }
-    if(c===2){
-      const L=openParty({prompt:'モンスターを えらんでください'}); let act=null;
+    if(c===4){
+      const L=openParty({prompt:'なかまを えらんでね'}); let act=null;
       while(true){const i=await L.choose(); if(i<0) break;
-        const sub=await menu(['いれかえる','つよさをみる','やめる'],{x:176,y:150,w:144});
+        const sub=await menu(['こうたい','ようすをみる','やめる'],{x:176,y:150,w:144});
         if(sub===1){await summary(S.party[i]);continue;} if(sub!==0) continue;
-        if(i===B.pi){await say(`${NAME(S.party[i])}は もう でています！`);continue;}
-        if(S.party[i].hp<=0){await say(`${NAME(S.party[i])}は たたかえる げんきが ない！`);continue;}
+        if(i===B.pi){await say(`${NAME(S.party[i])}は もう たたかっている！`);continue;}
+        if(S.party[i].hp<=0){await say(`${NAME(S.party[i])}は うごけない！`);continue;}
         act={type:'switch',i};break;}
       pop(L); if(act) return act; continue;
     }
-    if(c===3){ if(B.kind!=='wild'){await say('だめだ！ しょうぶの さいちゅうに あいてに せなかは みせられない！');continue;} return {type:'run'}; }
   }
 }
 const effSpd=(m,st)=>m.spd*sm(st.spd)*(m.status==='par'?.25:1);
 function enemyMove(){
   const e=B.e, ok=e.moves.map((m,i)=>i).filter(i=>e.moves[i].pp>0); if(!ok.length) return 'struggle';
   const wild=B.kind==='wild';
-  const w=ok.map(i=>{const M=MV[e.moves[i].id];let s=1;if(M.p>0){const ef=typeEff(M.t,SPI[B.p.sp].t);s=wild?1:ef>=2?4:ef===0?.05:ef<1?.5:1.5;}else{if(M.ail&&B.p.status)s=.05;if(M.foe&&B.st.p[M.foe[0]]<=(wild?-1:-2))s=wild?.05:.2;if(wild&&M.p===0)s*=.6;if(M.self&&B.st.e[M.self[0]]>=2)s=.2;}return s;});
+  const w=ok.map(i=>{const M=MV[e.moves[i].id];let s=1;if(M.p>0){const ef=typeEff(M.t,SPI[B.p.sp].t);s=wild?1:ef>=2?4:ef<1?.5:1.5;}
+    else{if(M.ail&&B.p.status)s=.05;if(M.foe&&B.st.p[M.foe[0]]<=(wild?-1:-2))s=wild?.05:.2;if(M.self&&B.st.e[M.self[0]]>=2)s=.2;if(M.heal&&e.hp>e.mhp*.6)s=.05;if(wild)s*=.6;}return s;});
   let r=rnd()*w.reduce((a,b)=>a+b,0);for(let k=0;k<ok.length;k++){r-=w[k];if(r<=0)return ok[k];}return ok[0];
+}
+async function doCalm(){
+  const p=Math.max(.25,Math.min(.85,.55+(B.p.lv-B.e.lv)*.05-(B.e.hp===B.e.mhp?.1:0)));
+  await bsay(`{P}は ${NAME(B.e)}に そっと はなしかけた…`,40);
+  if(B.calm>=3){await bsay(`${NAME(B.e)}は もう すっかり こころを ゆるしている。`);return;}
+  if(rnd()<p){B.calm++;tone(660,.12,{vol:.25});tone(990,.16,{vol:.25,when:.12});
+    await bsay(['のらの '+NAME(B.e)+'は すこし おちついた みたいだ。','のらの '+NAME(B.e)+'の めつきが やわらいだ！','のらの '+NAME(B.e)+'は すっかり こころを ゆるした みたいだ！'][B.calm-1]);}
+  else await bsay(`のらの ${NAME(B.e)}は ぷいっと そっぽを むいた…`);
 }
 async function doTurn(act){
   if(act.type==='run'){
-    B.runs++; const f=Math.floor(B.p.spd*32/Math.max(1,Math.floor(B.e.spd/4)%256))+30*B.runs;
-    if(f>255||rnd()*256<f){SFX.run();await bsay('うまく にげきれた！',40);return 'run';}
-    await bsay('にげられない！');
+    B.runs++; const f=Math.floor(B.p.spd*32/Math.max(1,Math.floor(B.e.spd/4)%256))+30*B.runs+B.calm*40;
+    if(f>255||rnd()*256<f){SFX.run();await bsay('なんとか にげきった！',40);return 'run';}
+    await bsay('にげみちを ふさがれた！');
   }
   if(act.type==='ball'){const r=await throwBall(act.id); if(r) return r;}
   if(act.type==='switch') await sendOut(act.i);
+  if(act.type==='calm') await doCalm();
   let order;
   if(act.type==='fight'){
     const em=enemyMove(); const pm=act.move;
@@ -1002,15 +1055,16 @@ async function doTurn(act){
   } else order=[['e',enemyMove()]];
   for(const [side,mv] of order){
     const user=side==='p'?B.p:B.e, tgt=side==='p'?B.e:B.p; if(user.hp<=0||tgt.hp<=0) continue;
+    if(side==='e'&&B.kind==='wild'&&B.calm>0&&rnd()<B.calm*.18){await bsay(`のらの ${NAME(B.e)}は じっと こちらを みている…`);continue;}
     if(side==='e'&&B.trainer&&B.trainer.potion&&!B.usedPotion&&B.e.hp<B.e.mhp/4){
-      B.usedPotion=true; await bsay(`${tTitle()}は いいキズぐすりを つかった！`); const h=Math.min(50,B.e.mhp-B.e.hp); await animHP('e',B.e.hp+h); B.e.hp+=h; continue;}
+      B.usedPotion=true; await bsay(`${tTitle()}は おおつゆを つかった！`); const h=Math.min(50,B.e.mhp-B.e.hp); await animHP('e',B.e.hp+h); B.e.hp+=h; continue;}
     await execMove(side,mv);
     const r=await afterAction(); if(r==='next') return null; if(r) return r;
   }
   for(const side of ['p','e']){
     const m=side==='p'?B.p:B.e; if(m.hp<=0||!(m.status==='psn'||m.status==='brn')) continue;
     const nm=side==='p'?NAME(m):eName(); const d=Math.max(1,Math.floor(m.mhp/16));
-    await bsay(`${nm}は ${m.status==='psn'?'どく':'やけど'}の ダメージを うけている！`,35); SFX.weak(); await animHP(side,Math.max(0,m.hp-d)); m.hp=Math.max(0,m.hp-d);
+    await bsay(m.status==='psn'?`${nm}は どくで くるしんでいる！`:`${nm}の やけどが ずきずき いたむ！`,35); SFX.weak(); await animHP(side,Math.max(0,m.hp-d)); m.hp=Math.max(0,m.hp-d);
     const r=await afterAction(); if(r==='next') return null; if(r) return r;
   }
   return null;
@@ -1024,21 +1078,21 @@ async function blinkTarget(side){B.blink={side,t:24};if(side==='p')B.shake=12;aw
 async function execMove(side,mi){
   const user=side==='p'?B.p:B.e, tgt=side==='p'?B.e:B.p, us=B.st[side], ts=B.st[side==='p'?'e':'p'];
   const un=side==='p'?NAME(user):eName(), tn=side==='p'?eName():NAME(tgt), tside=side==='p'?'e':'p';
-  if(user.status==='slp'){user.sleep--; if(user.sleep<=0){user.status=null;await bsay(`${un}は めを さました！`);} else {await bsay(`${un}は ぐうぐう ねむっている`);} return;}
+  if(user.status==='slp'){user.sleep--; if(user.sleep<=0){user.status=null;await bsay(`${un}は はっと めを さました！`);} else {await bsay(`${un}は すやすや ねむっている…`);} return;}
   if(user.status==='par'&&rnd()<.25){await bsay(`${un}は からだが しびれて うごけない！`);return;}
-  const id=mi==='struggle'?'struggle':user.moves[mi].id; if(mi!=='struggle') user.moves[mi].pp--;
+  const id=mi==='struggle'?'yakeppachi':user.moves[mi].id; if(mi!=='struggle') user.moves[mi].pp--;
   const M=MV[id];
   await bsay(`${un}の ${M.n}！`,35);
   if(M.a>0&&(M.p>0||M.foe||M.ail)){
     const acc=M.a/100*sm(us.acc)/sm(ts.eva);
-    if(rnd()>=acc){await bsay(`しかし ${tn}には あたらなかった！`);return;}
+    if(rnd()>=acc){await bsay(`${tn}は ひらりと かわした！`);return;}
   }
+  if(M.heal){ if(user.hp>=user.mhp){await bsay('でも HPは もう まんたんだ。');return;} const h=Math.max(1,Math.floor(user.mhp*M.heal)); tone(880,.3,{vol:.25,slide:400}); await animHP(side,user.hp+h); user.hp=Math.min(user.mhp,user.hp+h); await bsay(`${un}の きずが すこし ふさがった！`,40); return; }
   if(M.p>0){
-    const eff=id==='struggle'?1:typeEff(M.t,SPI[tgt.sp].t);
-    if(eff===0){await bsay(`${tn}には こうかが ない みたいだ…`);return;}
+    const eff=typeEff(M.t,SPI[tgt.sp].t);
     const hits=M.hits||1; let total=0, crit=false, n=0;
     for(let h=0;h<hits&&tgt.hp>0;h++){
-      const sp=SPECIAL.has(M.t); let A=sp?user.spc:user.atk, D=sp?tgt.spc:tgt.def;
+      const sp=!!M.s; let A=sp?user.spc:user.atk, D=sp?tgt.spc:tgt.def;
       A*=sm(sp?us.spc:us.atk); D*=sm(sp?ts.spc:ts.def); if(!sp&&user.status==='brn') A/=2;
       const c=rnd()<1/16; crit=crit||c;
       let base=Math.floor(Math.floor(Math.floor(2*user.lv/5+2)*M.p*A/Math.max(1,D))/50)+2; if(c) base=Math.floor(base*1.5);
@@ -1047,37 +1101,36 @@ async function execMove(side,mi){
       if(eff>1)SFX.super();else if(eff<1)SFX.weak();else SFX.hit();
       await blinkTarget(tside); await animHP(tside,tgt.hp-d); tgt.hp-=d; total+=d; n++;
     }
-    if(crit) await bsay('きゅうしょに あたった！',40);
-    if(eff>1) await bsay('こうかは ばつぐんだ！',40); else if(eff<1) await bsay('こうかは いまひとつの ようだ…',40);
-    if(hits>1) await bsay(`${n}かい あたった！`,35);
-    if(M.drain&&user.hp>0){const h=Math.max(1,Math.floor(total*M.drain));await animHP(side,user.hp+h);user.hp=Math.min(user.mhp,user.hp+h);await bsay(`${tn}から たいりょくを すいとった！`,40);}
-    if(M.recoil){const r=Math.max(1,Math.floor(total*M.recoil));await animHP(side,user.hp-r);user.hp=Math.max(0,user.hp-r);await bsay(`${un}は はんどうで ダメージを うけた！`,40);}
+    if(crit) await bsay('するどい いちげき！',40);
+    if(eff>1) await bsay(`${M.t}は ${SPI[tgt.sp].t.find(t=>KOKU[M.t]===t)}に かつ！ いい ところに あたった！`,45); else if(eff<1) await bsay('あまり きいていない ようだ…',40);
+    if(M.drain&&user.hp>0){const h=Math.max(1,Math.floor(total*M.drain));await animHP(side,user.hp+h);user.hp=Math.min(user.mhp,user.hp+h);await bsay(`${tn}から ちからを すいあげた！`,40);}
+    if(M.recoil){const r=Math.max(1,Math.floor(total*M.recoil));await animHP(side,user.hp-r);user.hp=Math.max(0,user.hp-r);await bsay(`${un}も はんどうで いたい おもいを した！`,40);}
     if(tgt.hp>0){
-      if(M.ail&&M.ch&&rnd()*100<M.ch) await applyAil(tgt,M.ail,tn,false,M.t);
-      if(M.foe) await stageChange(ts,M.foe[0],M.foe[1],tn,false);
+      if(M.ail&&M.ch&&rnd()*100<M.ch) await applyAil(tgt,M.ail,tn,false);
+      if(M.foe&&(!M.fch||rnd()*100<M.fch)) await stageChange(ts,M.foe[0],M.foe[1],tn,false);
     }
     return;
   }
   if(M.foe) return stageChange(ts,M.foe[0],M.foe[1],tn,true);
   if(M.self) return stageChange(us,M.self[0],M.self[1],un,true);
-  if(M.ail) return applyAil(tgt,M.ail,tn,true,M.t);
+  if(M.ail) return applyAil(tgt,M.ail,tn,true);
 }
 async function stageChange(st,k,d,nm,primary){
-  if((d>0&&st[k]>=6)||(d<0&&st[k]<=-6)){if(primary)await bsay('しかし なにも おこらなかった！');return;}
+  if((d>0&&st[k]>=6)||(d<0&&st[k]<=-6)){if(primary)await bsay('でも これいじょうは かわらない！');return;}
   st[k]+=d; SFX.stat(d>0); await bsay(`${nm}の ${STAT_N[k]}が ${d>0?'あがった':'さがった'}！`,45);
 }
-async function applyAil(m,ail,nm,primary,mt){
+async function applyAil(m,ail,nm,primary){
   const ts=SPI[m.sp].t;
-  const immune=(ail==='psn'&&ts.includes('どく'))||(ail==='brn'&&ts.includes('ほのお'))||(mt==='でんき'&&ts.includes('じめん'))||(mt==='でんき'&&ail==='par'&&ts.includes('でんき'));
-  if(m.status||immune){if(primary)await bsay(immune&&!m.status?`${nm}には こうかが ない みたいだ…`:'しかし うまく きまらなかった！');return;}
+  const immune=(ail==='brn'&&ts.includes('火'))||(ail==='psn'&&ts.includes('金'));
+  if(m.status||immune){if(primary)await bsay(immune&&!m.status?`${nm}には ききめが ない みたいだ…`:'でも うまく きまらなかった！');return;}
   m.status=ail; if(ail==='slp') m.sleep=ri(1,3)+1; SFX.status();
-  const msg={psn:'どくを あびた！',par:'まひして わざが でにくく なった！',slp:'ねむって しまった！',brn:'やけどを おった！'}[ail];
+  const msg={psn:'どくに おかされた！',par:'からだが しびれて しまった！',slp:'ねむって しまった！',brn:'やけどを おった！'}[ail];
   await bsay(`${nm}は ${msg}`,45);
 }
 async function afterAction(){
   if(B.e.hp<=0){
     SFX.faint(); for(let k=0;k<=16;k++){B.eDrop=k/16;await wait(1);}
-    await bsay(`${eName()}は たおれた！`,45);
+    await bsay(B.kind==='wild'?`のらの ${NAME(B.e)}は めを まわして どこかへ きえていった…`:`あいての ${NAME(B.e)}は うごけなく なった！`,45);
     const xp=Math.floor(SPI[B.e.sp].xp*B.e.lv/7*(B.kind==='trainer'?1.5:1));
     const parts=[...B.partic].filter(i=>S.party[i]&&S.party[i].hp>0);
     const each=Math.max(1,Math.floor(xp/Math.max(1,parts.length)));
@@ -1085,52 +1138,50 @@ async function afterAction(){
     if(B.kind==='trainer'&&B.ei<B.party.length-1){
       B.ei++;B.e=B.party[B.ei];B.eH=B.e.hp;B.st.e=newStages();B.eDrop=0;B.partic=new Set([B.pi]);S.seen[B.e.sp]=1;
       B.eX=-120; for(let k=0;k<=30;k++){B.eX=-120+312*k/30;await wait(1);}
-      await bsay(`${tTitle()}は ${NAME(B.e)}を くりだした！`);
+      await bsay(`${tTitle()}は ${NAME(B.e)}を よびだした！`);
       return 'next';
     }
     return 'win';
   }
   if(B.p.hp<=0){
     SFX.faint(); for(let k=0;k<=16;k++){B.pDrop=k/16;await wait(1);}
-    await bsay(`${NAME(B.p)}は たおれた！`,45);
+    await bsay(`${NAME(B.p)}は ちからつきて うごけなく なった…`,45);
     B.partic.delete(B.pi);
     if(!S.party.some(m=>m.hp>0)) return 'lose';
-    const L=openParty({prompt:'つぎの モンスターを えらんでください',cancel:false});
+    const L=openParty({prompt:'つぎの なかまを えらんでね',cancel:false});
     L.cur=S.party.findIndex(m=>m.hp>0);
-    while(true){const i=await L.choose(); if(S.party[i].hp>0){pop(L);B.p=null;await sendOut(i);break;} await say('たたかえる げんきが ない！');}
+    while(true){const i=await L.choose(); if(S.party[i].hp>0){pop(L);B.p=null;await sendOut(i);break;} await say('その なかまは うごけない！');}
     return 'next';
   }
   return null;
 }
 async function gainExp(i,x){
-  const m=S.party[i]; await bsay(`${NAME(m)}は ${x} けいけんちを もらった！`,45);
+  const m=S.party[i]; await bsay(`${NAME(m)}は ${x}の けいけんを つんだ！`,45);
   m.exp+=x;
   while(m.lv<100&&m.exp>=expFor(m.lv+1)){
-    const old={mhp:m.mhp,atk:m.atk,def:m.def,spd:m.spd,spc:m.spc}; m.lv++; calc(m); if(m.hp>0) m.hp+=m.mhp-old.mhp;
+    const old={mhp:m.mhp}; m.lv++; calc(m); if(m.hp>0) m.hp+=m.mhp-old.mhp;
     if(B&&i===B.pi) B.pH=m.hp; B&&B.lv.add(i);
-    jingle('G5 G5 G5 C6 - - -',.09,{vol:.35});
-    await say(`${NAME(m)}の レベルが ${m.lv}に あがった！`,{keep:true}).then(async L=>{
-      const box=staticBox(()=>{drawBox(160,8,160,150);[['こうげき',m.atk],['ぼうぎょ',m.def],['すばやさ',m.spd],['とくしゅ',m.spc]].forEach(([k,v],j)=>{txt(k,180,22+j*32,3,FONT_S);txtR(String(v),300,32+j*32);});});
-      await waitA(); pop(box); pop(L);
-    });
+    jingle('A5 C6 E6 A6 - - -',.08,{vol:.35});
+    const L=await say(`${NAME(m)}は レベル ${m.lv}に なった！`,{keep:true});
+    const box=staticBox(()=>{drawBox(160,8,160,150);[['ちから',m.atk],['まもり',m.def],['すばやさ',m.spd],['れいりょく',m.spc]].forEach(([k,v],j)=>{txt(k,180,22+j*32,3,FONT_S);txtR(String(v),300,32+j*32);});});
+    await waitA(); pop(box); pop(L);
     for(const [l,mv] of SPI[m.sp].ls) if(l===m.lv) await learnMove(m,mv);
   }
 }
 function waitA(){return new Promise(r=>{const L={draw(){},update(){if(pressed('a')||pressed('b')){SFX.blip();pop(L);r();}}};push(L);});}
 async function learnMove(m,id){
   if(m.moves.some(x=>x.id===id)) return; const nm=NAME(m), mn=MV[id].n;
-  if(m.moves.length<4){m.moves.push({id,pp:MV[id].pp});jingle('C5 E5 G5 -',.08,{vol:.3});await say(`${nm}は あたらしく ${mn}を おぼえた！`);return;}
-  await say(`${nm}は あたらしく ${mn}を おぼえたい… しかし わざを 4つ おぼえるので せいいっぱいだ！`);
+  if(m.moves.length<4){m.moves.push({id,pp:MV[id].pp});jingle('C6 E6 G6 -',.08,{vol:.3});await say(`${nm}は あたらしく 「${mn}」を みにつけた！`);return;}
+  await say(`${nm}は 「${mn}」を みにつけたがっている。 でも おぼえて いられる わざは 4つ までだ…`);
   while(true){
-    if(await ask(`${mn}の かわりに ほかの わざを わすれさせますか？`)){
-      const L=await say('どの わざを わすれさせたい？',{keep:true});
+    if(await ask(`かわりに どれかを わすれさせる？`)){
+      const L=await say('どの わざを わすれさせる？',{keep:true});
       const k=await menu(m.moves.map(x=>MV[x.id].n),{x:96,y:40,w:224}); pop(L);
       if(k<0) continue;
       const old=MV[m.moves[k].id].n; m.moves[k]={id,pp:MV[id].pp};
-      await say(`1 2の… ポカン！ ${nm}は ${old}の つかいかたを きれいに わすれた！`);
-      await say(`そして… ${nm}は あたらしく ${mn}を おぼえた！`); return;
+      await say(`${nm}は 「${old}」を そっと てばなし… あたらしく 「${mn}」を みにつけた！`); return;
     }
-    if(await ask(`${mn}を おぼえるのを あきらめますか？`)){await say(`${nm}は ${mn}を おぼえずに おわった！`);return;}
+    if(await ask(`「${mn}」は みにつけずに おく？`)){await say(`${nm}は 「${mn}」を みにつけなかった。`);return;}
   }
 }
 async function throwBall(id){
@@ -1138,63 +1189,62 @@ async function throwBall(id){
   SFX.ball(); for(let k=0;k<=28;k++){B.ball={x:70+170*k/28,y:170-120*k/28-Math.sin(k/28*Math.PI)*60,s:0};await wait(1);}
   B.eHidden=true; B.ball={x:240,y:70,s:0}; for(let k=0;k<=12;k++){B.ball.y=70+k*2;await wait(1);}
   const e=B.e, sb=e.status==='slp'?.25:e.status?.12:0;
-  const p=Math.min(1,((3*e.mhp-2*e.hp)*SPI[e.sp].cr)/(3*e.mhp*255)*1.5+sb);
+  const p=Math.min(1,((3*e.mhp-2*e.hp)*SPI[e.sp].cr)/(3*e.mhp*255)*1.5+sb+B.calm*.12);
   const caught=rnd()<p; const shakes=caught?3:Math.min(3,Math.floor(p*4+rnd()*1.2));
   for(let s=0;s<shakes;s++){await wait(18);SFX.shake();for(let k=0;k<16;k++){B.ball.s=Math.sin(k/16*Math.PI*2)*6;await wait(1);}B.ball.s=0;}
   await wait(20);
   if(!caught){B.ball=null;B.eHidden=false;SFX.ball();
-    await bsay(['だめだ！ モンスターが ボールから でてしまった！','ああっ！ つかまえたと おもったのに！','ざんねん！ もうすこしで つかまえられたのに！','おしい！ あと ちょっとの ところ だったのに！'][shakes]); return null;}
-  jingle('C5 E5 G5 E5 G5 C6 - -',.11,{vol:.35});
-  await say(`やったー！ ${NAME(e)}を つかまえたぞ！`);
+    await bsay(['いとが ぷつんと きれて しまった！','あっ！ むすびめが ほどけて しまった！','もう すこしで むすべたのに…！','おしい！ さいごの ひと むすびが…！'][shakes]); return null;}
+  jingle('E5 A5 C6 A5 C6 E6 - -',.11,{vol:.35});
+  await say(`むすびいとが ひかった！ ${NAME(e)}と ちぎりを むすんだ！`);
   const isNew=!S.caught[e.sp]; const where=giveMon(e);
-  if(isNew&&S.flags.dex){await say(`${NAME(e)}の データが あたらしく ずかんに とうろく されます！`);await dexDetail(e.sp);}
-  if(where==='box') await say(`てもちが いっぱいなので ${NAME(e)}は パソコンの ボックスに おくられた！`);
+  if(isNew&&S.flags.dex){await say(`${NAME(e)}の ことが ヤドリちょうに しるされた！`);await dexDetail(e.sp);}
+  if(where==='box') await say(`なかまが いっぱいなので ${NAME(e)}は ことづていしに あずけられた！`);
   return 'caught';
 }
 async function evolve(m){
-  const from=m.sp,to=SPI[m.sp].evo[1]; let cur=from; scene='evo'; EVO={sp:from}; await fade(0,10,0);
-  await say(`おや…!? ${SPI[from].n}の ようすが…！`);
+  const from=m.sp,to=SPI[m.sp].evo[1]; scene='evo'; EVO={sp:from}; await fade(0,10,0);
+  await say(`${SPI[from].n}の からだが あわい ひかりに つつまれて いく…`);
   Music.stop(); for(let k=0;k<26;k++){EVO.sp=k%2?to:from;EVO.w=1;tone(300+k*30,.1,{vol:.2});await wait(Math.max(4,18-k));}
   EVO.sp=to;EVO.w=0; m.sp=to; const oh=m.mhp; calc(m); m.hp+=m.mhp-oh; S.seen[to]=1;S.caught[to]=1;
-  jingle('C5 E5 G5 C6 - G5 C6 - - -',.12,{vol:.35});
-  await say(`おめでとう！ ${SPI[from].n}は ${SPI[to].n}に しんかした！`);
+  jingle('E5 G5 A5 C6 - A5 C6 - - -',.12,{vol:.35});
+  await say(`${SPI[from].n}は ${SPI[to].n}へと すがたを かえた！`);
   for(const [l,mv] of SPI[to].ls) if(l===m.lv) await learnMove(m,mv);
   await fade(1,10,0); scene='world';
 }
 let EVO={sp:null,w:0};
-function drawEvo(){ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);if(EVO.sp)ctx.drawImage(EVO.w?MONIMG_D[EVO.sp]:MONIMG[EVO.sp],104,40,112,112);}
+function drawEvo(){ctx.fillStyle=PAL[3];ctx.fillRect(0,0,W,H);ctx.fillStyle=PAL[1];ctx.globalAlpha=.25+.15*Math.sin(FR/8);ctx.beginPath();ctx.arc(160,96,80,0,7);ctx.fill();ctx.globalAlpha=1;if(EVO.sp)ctx.drawImage(EVO.w?MONIMG_W[EVO.sp]:MONIMG[EVO.sp],104,40,112,112);}
 function drawBattle(){
   ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);
   if(!B) return;
   const e=B.e, p=B.p;
-  // enemy
+  // enemy side: a soft lantern glow behind the spirit
+  ctx.fillStyle=PAL[1];ctx.globalAlpha=.35;ctx.beginPath();ctx.ellipse(240,100,66,10,0,0,7);ctx.fill();ctx.beginPath();ctx.ellipse(72,188,66,10,0,0,7);ctx.fill();ctx.globalAlpha=1;
   if(e&&!B.eHidden){const vis=!(B.blink&&B.blink.side==='e'&&(B.blink.t--,Math.floor(B.blink.t/4)%2));
-    if(vis&&B.eDrop<1){ctx.save();ctx.beginPath();ctx.rect(B.eX,8,96,96);ctx.clip();ctx.drawImage(MONIMG[e.sp],B.eX,8+B.eDrop*96,96,96);ctx.restore();}}
-  if(e&&B.eX>=192&&B.eDrop<1){txt(NAME(e),18,10);txt(`:L${e.lv}`,64,30,3,FONT_S);if(e.status)txt(STN[e.status],112,30,3,FONT_S);
-    txt('HP:',18,48,3,FONT_S);hpBar(46,50,104,B.eH/e.mhp);ctx.fillStyle=PAL[3];ctx.fillRect(10,62,148,2);ctx.fillRect(10,28,2,36);}
-  // ground lines
-  ctx.fillStyle=PAL[1];ctx.fillRect(176,100,128,4);ctx.fillRect(12,188,128,4);
-  // player
+    if(vis&&B.eDrop<1){ctx.save();ctx.beginPath();ctx.rect(B.eX,4,96,96);ctx.clip();ctx.drawImage(MONIMG[e.sp],B.eX,4+B.eDrop*96,96,96);ctx.restore();}}
+  if(e&&B.eX>=192&&B.eDrop<1){drawBox(4,4,168,76);txt(NAME(e),18,14);txtR(`Lv${e.lv}`,158,16,3,FONT_S);
+    txt(SPI[e.sp].t.join('・'),18,36,2,FONT_S);if(e.status)txt(STN[e.status],90,36,2,FONT_S);
+    hpBar(18,56,140,B.eH/e.mhp);
+    if(B.kind==='wild'){for(let i=0;i<3;i++)txt(i<B.calm?'◆':'◇',112+i*16,34,i<B.calm?2:1,FONT_S);}}
   if(p&&B.pDrop<1&&B.pScale>0){const vis=!(B.blink&&B.blink.side==='p'&&(B.blink.t--,Math.floor(B.blink.t/4)%2));
     const s=96*B.pScale, sh=B.shake>0?((B.shake--)%4<2?-4:4):0;
-    if(vis){ctx.save();ctx.beginPath();ctx.rect(24,96,96,96);ctx.clip();ctx.drawImage(flipCache(p.sp),24+48-s/2+sh,96+96-s+B.pDrop*96,s,s);ctx.restore();}}
-  if(p&&B.pDrop<1){txt(NAME(p),168,108);txt(`:L${p.lv}`,216,128,3,FONT_S);if(p.status)txt(STN[p.status],264,128,3,FONT_S);
-    txt('HP:',168,146,3,FONT_S);hpBar(196,148,108,B.pH/p.mhp);txtR(`${B.pH}/${p.mhp}`,304,160);
-    ctx.fillStyle=PAL[3];ctx.fillRect(160,180,148,2);ctx.fillRect(306,128,2,54);
-    const nx=expFor(p.lv+1),cx=expFor(p.lv);ctx.fillStyle=PAL[1];ctx.fillRect(168,176,Math.round(136*Math.max(0,Math.min(1,(p.exp-cx)/Math.max(1,nx-cx)))),2);}
-  if(B.ball){ctx.drawImage(IMG_BALL,B.ball.x-16+B.ball.s,B.ball.y-16,32,32);}
+    if(vis){ctx.save();ctx.beginPath();ctx.rect(24,92,96,96);ctx.clip();ctx.drawImage(flipCache(p.sp),24+48-s/2+sh,92+96-s+B.pDrop*96,s,s);ctx.restore();}}
+  if(p&&B.pDrop<1){drawBox(148,100,168,88);txt(NAME(p),162,110);txtR(`Lv${p.lv}`,302,112,3,FONT_S);if(p.status)txt(STN[p.status],162,132,2,FONT_S);
+    hpBar(162,150,140,B.pH/p.mhp);txtR(`${B.pH}/${p.mhp}`,302,132,3,FONT_S);
+    const nx=expFor(p.lv+1),cx=expFor(p.lv);ctx.fillStyle=PAL[3];ctx.fillRect(162,166,140,4);ctx.fillStyle=PAL[1];ctx.fillRect(163,167,Math.round(138*Math.max(0,Math.min(1,(p.exp-cx)/Math.max(1,nx-cx)))),2);}
+  if(B.ball){ctx.drawImage(IMG_SPOOL,B.ball.x-16+B.ball.s,B.ball.y-16,32,32);}
   drawBox(0,192,320,96);
 }
 const FLIPC={};const flipCache=sp=>FLIPC[sp]||(FLIPC[sp]=flipH(MONIMG[sp]));
 
 // ============================== MENUS & SCREENS ==============================
-function openParty({prompt='モンスターを えらんでください',cancel=true}={}){
+function openParty({prompt='なかまを えらんでね',cancel=true}={}){
   let c=0;const L={full:1,res:null,
     draw(){ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);
       S.party.forEach((m,i)=>{const y=i*40+2;if(i===c&&(L.res||FR%30<20))txt('▶',4,y+10);
-        ctx.drawImage((FR>>4)%2&&i===c?MONIMG_D[m.sp]:MONIMG[m.sp],22,y+4,32,32);txt(NAME(m),60,y+2);txt(`:L${m.lv}`,212,y+2,3,FONT_S);
-        if(m.status)txt(STN[m.status],260,y+2,3,FONT_S); else if(m.hp<=0) txt('ひんし',260,y+2,3,FONT_S);
-        txt('HP:',60,y+22,3,FONT_S);hpBar(88,y+24,120,m.hp/m.mhp);txtR(`${m.hp}/${m.mhp}`,312,y+18);});
+        ctx.drawImage((FR>>4)%2&&i===c?MONIMG_D[m.sp]:MONIMG[m.sp],22,y+4,32,32);txt(NAME(m),60,y+2);txt(`Lv${m.lv}`,212,y+2,3,FONT_S);
+        if(m.status)txt(STN[m.status],260,y+2,3,FONT_S); else if(m.hp<=0) txt('うごけない',252,y+2,3,FONT_S);
+        txt('HP',60,y+22,3,FONT_S);hpBar(84,y+24,124,m.hp/m.mhp);txtR(`${m.hp}/${m.mhp}`,312,y+18);});
       drawBox(0,240,320,48);txt(prompt,18,256);},
     update(){if(!L.res)return;const n=S.party.length;if(rep('down')){c=(c+1)%n;SFX.menu();}else if(rep('up')){c=(c+n-1)%n;SFX.menu();}
       else if(pressed('a')){SFX.blip();const r=L.res;L.res=null;r(c);}else if(cancel&&pressed('b')){const r=L.res;L.res=null;r(-1);}},
@@ -1202,28 +1252,28 @@ function openParty({prompt='モンスターを えらんでください',cancel=
   return push(L);
 }
 function summary(m){return new Promise(res=>{const s=SPI[m.sp];const L={full:1,draw(){ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);
-    ctx.drawImage(MONIMG[m.sp],8,8,96,96);txt(`No.${String(s.no).padStart(3,'0')}`,120,10,3,FONT_S);txt(s.n,120,28);txt(`:L${m.lv}`,240,30,3,FONT_S);
-    txt('HP:',120,54,3,FONT_S);hpBar(148,56,110,m.hp/m.mhp);txtR(`${m.hp}/${m.mhp}`,312,66);
-    txt(`タイプ/ ${s.t.join('・')}`,120,88,3,FONT_S);txt(`じょうたい/ ${m.hp<=0?'ひんし':m.status?STN[m.status]:'げんき'}`,120,104,3,FONT_S);
+    ctx.drawImage(MONIMG[m.sp],8,8,96,96);txt(`その${String(s.no).padStart(2,'0')}`,120,10,3,FONT_S);txt(s.n,120,28);txt(`Lv${m.lv}`,250,30,3,FONT_S);
+    txt('HP',120,56,3,FONT_S);hpBar(144,58,114,m.hp/m.mhp);txtR(`${m.hp}/${m.mhp}`,312,66);
+    txt(`そうせい/ ${s.t.join('・')}`,120,88,3,FONT_S);txt(`ようす/ ${m.hp<=0?'うごけない':m.status?STN[m.status]:'げんき'}`,120,104,3,FONT_S);
     ctx.fillStyle=PAL[3];ctx.fillRect(8,124,304,2);
-    [['こうげき',m.atk],['ぼうぎょ',m.def],['すばやさ',m.spd],['とくしゅ',m.spc]].forEach(([k,v],j)=>{txt(k,12,134+j*24,3,FONT_S);txtR(String(v),112,132+j*24);});
+    [['ちから',m.atk],['まもり',m.def],['すばやさ',m.spd],['れいりょく',m.spc]].forEach(([k,v],j)=>{txt(k,12,134+j*24,3,FONT_S);txtR(String(v),112,132+j*24);});
     m.moves.forEach((x,j)=>{txt(MV[x.id].n,130,132+j*24);txtR(`${x.pp}/${MV[x.id].pp}`,312,136+j*24,3,FONT_S);});
-    ctx.fillRect(8,232,304,2);txt(`けいけんち ${m.exp}`,12,242,3,FONT_S);txt(`つぎの レベルまで ${Math.max(0,expFor(m.lv+1)-m.exp)}`,12,262,3,FONT_S);},
+    ctx.fillRect(8,232,304,2);txt(`けいけん ${m.exp}`,12,242,3,FONT_S);txt(`つぎの レベルまで ${Math.max(0,expFor(m.lv+1)-m.exp)}`,12,262,3,FONT_S);},
   update(){if(pressed('a')||pressed('b')){SFX.blip();pop(L);res();}}};push(L);});}
 async function partyOW(){
   if(!S.party.length) return; const L=openParty({});
   while(true){const i=await L.choose(); if(i<0) break;
-    const sub=await menu(['つよさをみる','ならびかえ','やめる'],{x:176,y:140,w:144});
+    const sub=await menu(['ようすをみる','ならびかえ','やめる'],{x:176,y:140,w:144});
     if(sub===0) await summary(S.party[i]);
-    else if(sub===1){L.prompt0=1;const L2=openParty({prompt:'どこに いどうする？'});L2.cur=i;const j=await L2.choose();pop(L2);if(j>=0&&j!==i){[S.party[i],S.party[j]]=[S.party[j],S.party[i]];SFX.blip();}}
+    else if(sub===1){const L2=openParty({prompt:'どこに うごかす？'});L2.cur=i;const j=await L2.choose();pop(L2);if(j>=0&&j!==i){[S.party[i],S.party[j]]=[S.party[j],S.party[i]];SFX.blip();}}
   }
   pop(L);
 }
 async function useOnMon(id,m){
   const I=IT[id];
-  if(I.heal){if(m.hp<=0||m.hp>=m.mhp){await say('つかっても こうかが ないよ。');return false;}const h=Math.min(I.heal,m.mhp-m.hp);m.hp+=h;S.bag[id]--;tone(880,.3,{vol:.25,slide:400});await say(`${NAME(m)}の HPが ${h} かいふく した！`);return true;}
-  if(I.cure){if(m.status!==I.cure){await say('つかっても こうかが ないよ。');return false;}m.status=null;S.bag[id]--;SFX.status();
-    await say(`${NAME(m)}の ${{psn:'どくが きえた',par:'からだの しびれが とれた',slp:'ねむけが さめた',brn:'やけどが なおった'}[I.cure]}！`);return true;}
+  if(I.heal){if(m.hp<=0||m.hp>=m.mhp){await say('いまは つかっても いみが ない みたいだ。');return false;}const h=Math.min(I.heal,m.mhp-m.hp);m.hp+=h;S.bag[id]--;tone(880,.3,{vol:.25,slide:400});await say(`${NAME(m)}の HPが ${h} かいふく した！`);return true;}
+  if(I.cure){if(m.status!==I.cure){await say('いまは つかっても いみが ない みたいだ。');return false;}m.status=null;S.bag[id]--;SFX.status();
+    await say(`${NAME(m)}の ${{psn:'どくが きえた',par:'しびれが とれた',slp:'ねむけが さめた',brn:'やけどが ひいた'}[I.cure]}！`);return true;}
   return false;
 }
 async function bagOW(){
@@ -1233,92 +1283,92 @@ async function bagOW(){
     const id=ids[k],I=IT[id];
     const sub=await menu(['つかう','せつめい','やめる'],{x:176,y:150,w:144});
     if(sub===1){await say(I.d);continue;} if(sub!==0) continue;
-    if(I.key||I.ball){await say(I.ball?'いまは つかえません。 やせいの モンスターに なげよう！':I.d+'だ。 だいじに もっていよう。');continue;}
-    const L=openParty({prompt:'どの モンスターに つかう？'});
+    if(I.key||I.ball){await say(I.ball?'いまは つかえない。 のらの ヤドリと であった ときに なげよう。':I.d+'だ。 だいじに もっていよう。');continue;}
+    const L=openParty({prompt:'だれに つかう？'});
     while(true){const i=await L.choose(); if(i<0) break; await useOnMon(id,S.party[i]); if(!S.bag[id]) break;}
     pop(L);
   }
 }
 async function dexScreen(){
   await new Promise(res=>{let c=0,top=0;const L={full:1,draw(){ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);
-      txt('モンスターずかん',16,10);txt(`みつけた ${seenN()}　つかまえた ${caughtN()}`,16,32,3,FONT_S);ctx.fillStyle=PAL[3];ctx.fillRect(8,50,304,2);
+      txt('ヤドリちょう',16,10);txt(`であった ${seenN()}　ちぎった ${caughtN()}`,16,32,3,FONT_S);ctx.fillStyle=PAL[3];ctx.fillRect(8,50,304,2);
       for(let r=0;r<8;r++){const i=top+r;if(i>=SP.length)break;const s=SP[i],y=60+r*27;if(i===c)txt('▶',10,y);
-        txt(String(s.no).padStart(3,'0'),30,y+2,3,FONT_S);txt(S.caught[s.id]?'●':'',68,y);txt(S.seen[s.id]?s.n:'－－－－－',90,y);}
-      txt('A:くわしく　B:もどる',180,272,2,FONT_S);},
+        txt(String(s.no).padStart(2,'0'),30,y+2,3,FONT_S);txt(S.caught[s.id]?'◆':'',60,y);txt(S.seen[s.id]?s.n:'？？？？',82,y);if(S.seen[s.id])txt(s.t.join('・'),220,y+2,2,FONT_S);}
+      txt('けってい:くわしく　もどる:とじる',140,272,2,FONT_S);},
     update(){if(rep('down')){c=Math.min(SP.length-1,c+1);SFX.menu();}else if(rep('up')){c=Math.max(0,c-1);SFX.menu();}
       if(c<top)top=c;if(c>=top+8)top=c-7;
-      if(pressed('a')&&S.seen[SP[c].id]){SFX.blip();L.busy=1;dexDetail(SP[c].id);}else if(pressed('b')){pop(L);res();}}};push(L);});
+      if(pressed('a')&&S.seen[SP[c].id]){SFX.blip();dexDetail(SP[c].id);}else if(pressed('b')){pop(L);res();}}};push(L);});
 }
-function dexDetail(sp){return new Promise(res=>{const s=SPI[sp],own=S.caught[sp];const lines=wrap(own?s.d:'まだ くわしい データが ない。',284);
+function dexDetail(sp){return new Promise(res=>{const s=SPI[sp],own=S.caught[sp];const lines=wrap(own?s.d:'まだ ちぎりを むすんで いないので くわしい ことは わからない。',284);
   const L={full:1,draw(){ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);ctx.drawImage(MONIMG[sp],16,16,96,96);
-      txt(s.n,128,20);txt(`${s.k}モンスター`,128,46,3,FONT_S);txt(`No.${String(s.no).padStart(3,'0')}`,128,68,3,FONT_S);txt(`タイプ/ ${s.t.join('・')}`,128,90,3,FONT_S);
+      txt(s.n,128,20);txt(`${s.k}の ヤドリ`,128,46,3,FONT_S);txt(`その${String(s.no).padStart(2,'0')}`,128,68,3,FONT_S);txt(`そうせい/ ${s.t.join('・')}`,128,90,3,FONT_S);
       ctx.fillStyle=PAL[3];ctx.fillRect(8,124,304,3);lines.forEach((l,i)=>txt(l,18,140+i*28));},
     update(){if(pressed('a')||pressed('b')){SFX.blip();pop(L);res();}}};push(L);});}
 async function trainerCard(){
   await new Promise(res=>{const L={full:1,draw(){ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);drawBox(8,8,304,272);
-      ctx.drawImage(CH.player.down[0],224,32,64,64);txt(`なまえ/ ${S.name}`,28,32);txt(`おこづかい/ ${S.money}えん`,28,64);
-      const t=Math.floor(S.time/60);txt(`プレイじかん/ ${Math.floor(t/3600)}:${String(Math.floor(t/60)%60).padStart(2,'0')}`,28,96);
-      txt(`ずかん/ ${S.flags.dex?caughtN()+'ひき':'－'}`,28,128);txt('バッジ',28,170);
+      ctx.drawImage(CH.player.down[0],224,32,64,64);txt(`なまえ/ ${S.name}`,28,32);txt(`おかね/ ${S.money}文`,28,64);
+      const t=Math.floor(S.time/60);txt(`たびの じかん/ ${Math.floor(t/3600)}:${String(Math.floor(t/60)%60).padStart(2,'0')}`,28,96);
+      txt(`ヤドリちょう/ ${S.flags.dex?caughtN()+'にん':'－'}`,28,128);txt('ともしび',28,170);
       ctx.fillStyle=PAL[3];ctx.fillRect(28,192,264,2);
-      if(S.badges.includes('いわ')){ctx.drawImage(TILES['B'][0],36,204,48,48);txt('いわのバッジ',92,220,3,FONT_S);} else txt('まだ ない',40,216,2,FONT_S);},
+      if(S.badges.includes('いわおの灯')){ctx.drawImage(LANTERN_LIT[(FR>>4)&1],36,204,48,48);txt('いわおの灯',92,220,3,FONT_S);} else txt('まだ ひとつも ない',40,216,2,FONT_S);},
     update(){if(pressed('a')||pressed('b')){SFX.blip();pop(L);res();}}};push(L);});
 }
-const SAVE_KEY='monster_tamer_midori_v1';
+const SAVE_KEY='yadori_no_akari_v1';
 function hasSave(){try{return !!localStorage.getItem(SAVE_KEY);}catch(e){return false;}}
 async function saveGame(){
-  if(!await ask('いままでの かつやくを レポートに かきこみますか？')) return;
+  if(!await ask('きょうの できごとを にっきに かきますか？')) return;
   S.x=P.x;S.y=P.y;S.dir=P.dir;
   let ok=false; try{localStorage.setItem(SAVE_KEY,JSON.stringify(S));ok=true;}catch(e){}
-  if(ok){jingle('C5 G5 C6 -',.1,{vol:.3});await say('{P}は レポートに しっかり かきのこした！');}
-  else await say('レポートを かけなかった… この ブラウザでは ほぞん できない みたいだ。');
+  if(ok){jingle('C6 G5 C6 -',.1,{vol:.3});await say('{P}は にっきを しっかり かきのこした！');}
+  else await say('にっきを かけなかった… この ブラウザでは きろく できない みたいだ。');
 }
 let startIdx=0;
 async function startMenu(){
   SFX.menu();
   while(true){
-    const items=[]; if(S.flags.dex) items.push(['ずかん',dexScreen]); if(S.party.length) items.push(['モンスター',partyOW]);
-    items.push(['バッグ',bagOW],[S.name,trainerCard],['レポート',saveGame],['とじる',null]);
-    const i=await menu(items.map(x=>x[0]),{x:180,y:0,w:140,start:Math.min(startIdx,items.length-1)});
+    const items=[]; if(S.flags.dex) items.push(['ヤドリちょう',dexScreen]); if(S.party.length) items.push(['なかま',partyOW]);
+    items.push(['どうぐ',bagOW],[S.name,trainerCard],['にっき',saveGame],['とじる',null]);
+    const i=await menu(items.map(x=>x[0]),{x:164,y:0,w:156,start:Math.min(startIdx,items.length-1)});
     if(i<0||!items[i][1]) return; startIdx=i; await items[i][1]();
   }
 }
 async function shop(stock){
-  const greet=await say('「いらっしゃいませ！ なにに いたしましょう？」',{keep:true});
-  const mb=staticBox(()=>{drawBox(176,0,144,48);txtR(`${S.money}えん`,304,15);});
+  const greet=await say('よろず屋「いらっしゃい！ なにを おもとめで？」',{keep:true});
+  const mb=staticBox(()=>{drawBox(176,0,144,48);txtR(`${S.money}文`,304,15);});
   while(true){
-    const c=await menu(['かいにきた','うりにきた','やめる'],{x:0,y:0,w:168});
+    const c=await menu(['かう','うる','やめる'],{x:0,y:0,w:168});
     if(c===0){
       while(true){
-        const k=await menu([...stock.map(id=>({l:IT[id].n,r:IT[id].price+''})),'やめる'],{x:16,y:56,w:288}); if(k<0||k===stock.length) break;
+        const k=await menu([...stock.map(id=>({l:IT[id].n,r:IT[id].price+'文'})),'やめる'],{x:16,y:56,w:288}); if(k<0||k===stock.length) break;
         const id=stock[k],pr=IT[id].price; const max=Math.min(99,Math.floor(S.money/pr));
-        if(max<1){await say('「おかねが たりない ようですね」');continue;}
+        if(max<1){await say('よろず屋「おや おかねが たりない みたいだね」');continue;}
         const n=await qtySelect(max,pr); if(!n) continue;
-        if(await ask(`「${IT[id].n}を ${n}こで ${n*pr}えんに なります。 よろしいですか？」`)){S.money-=n*pr;addItem(id,n);SFX.buy();await say('「まいど ありがとう ございます！」');
-          if(id==='ball'&&n>=10){addItem('ball');await say('「おまけで モンスターボールを 1こ どうぞ！」');}}
+        if(await ask(`よろず屋「${IT[id].n} ${n}こで ${n*pr}文だよ。 いいかい？」`)){S.money-=n*pr;addItem(id,n);SFX.buy();await say('よろず屋「まいど！」');
+          if(id==='ito'&&n>=10){addItem('ito');await say('よろず屋「たくさん かって くれたから むすびいとを 1こ おまけ！」');}}
       }
     } else if(c===1){
-      while(true){const ids=bagIds(true); if(!ids.length){await say('「うれる ものが ない ようですね」');break;}
+      while(true){const ids=bagIds(true); if(!ids.length){await say('よろず屋「うれる ものは ない みたいだね」');break;}
         const k=await menu([...ids.map(id=>({l:IT[id].n,r:'×'+S.bag[id]})),'やめる'],{x:16,y:56,w:288}); if(k<0||k===ids.length) break;
         const id=ids[k],pr=Math.floor(IT[id].price/2); const n=await qtySelect(S.bag[id],pr); if(!n) continue;
-        if(await ask(`「${IT[id].n} ${n}こを ${n*pr}えんで かいとります。 よろしいですか？」`)){S.money+=n*pr;S.bag[id]-=n;SFX.buy();}
+        if(await ask(`よろず屋「${IT[id].n} ${n}こなら ${n*pr}文で ひきとるよ。 いいかい？」`)){S.money+=n*pr;S.bag[id]-=n;SFX.buy();}
       }
     } else break;
   }
-  pop(mb); pop(greet); await say('「また どうぞ！」');
+  pop(mb); pop(greet); await say('よろず屋「また おいで！」');
 }
-function qtySelect(max,price){return new Promise(res=>{let n=1;const L={draw(){drawBox(152,148,168,48);txt(`×${String(n).padStart(2,'0')}`,168,162);txtR(`${n*price}えん`,304,162);},
+function qtySelect(max,price){return new Promise(res=>{let n=1;const L={draw(){drawBox(152,148,168,48);txt(`×${String(n).padStart(2,'0')}`,168,162);txtR(`${n*price}文`,304,162);},
   update(){if(rep('up'))n=n>=max?1:n+1;else if(rep('down'))n=n<=1?max:n-1;else if(rep('right'))n=Math.min(max,n+10);else if(rep('left'))n=Math.max(1,n-10);
     if(pressed('a')){SFX.blip();pop(L);res(n);}else if(pressed('b')){pop(L);res(0);}}};push(L);});}
 async function pcMenu(){
-  SFX.blip(); await say('{P}は パソコンの スイッチを いれた！');
+  SFX.blip(); await say('{P}は ことづていしに てを かざした…');
   while(true){
-    const c=await menu(['あずける','ひきだす','やめる'],{x:0,y:0,w:160});
-    if(c===0){ if(S.party.length<=1){await say('てもちが 1ぴきだけ では あずけられない！');continue;}
-      const L=openParty({prompt:'どの モンスターを あずける？'});const i=await L.choose();pop(L);if(i<0)continue;
-      const m=S.party.splice(i,1)[0];S.box.push(m);await say(`${NAME(m)}を ボックスに あずけた！`);}
-    else if(c===1){ if(!S.box.length){await say('ボックスに モンスターが いない！');continue;} if(S.party.length>=6){await say('てもちが いっぱいだ！');continue;}
-      const k=await menu(S.box.map(m=>({l:NAME(m),r:':L'+m.lv})),{x:32,y:0,w:256});if(k<0)continue;
-      const m=S.box.splice(k,1)[0];S.party.push(m);await say(`${NAME(m)}を ひきだした！`);}
+    const c=await menu(['あずける','よびだす','やめる'],{x:0,y:0,w:160});
+    if(c===0){ if(S.party.length<=1){await say('ひとりも いなくなっては たびが できない！');continue;}
+      const L=openParty({prompt:'だれを あずける？'});const i=await L.choose();pop(L);if(i<0)continue;
+      const m=S.party.splice(i,1)[0];S.box.push(m);await say(`${NAME(m)}を いしに あずけた。`);}
+    else if(c===1){ if(!S.box.length){await say('いしには だれも あずけて いない。');continue;} if(S.party.length>=6){await say('なかまが いっぱいだ！');continue;}
+      const k=await menu(S.box.map(m=>({l:NAME(m),r:'Lv'+m.lv})),{x:32,y:0,w:256});if(k<0)continue;
+      const m=S.box.splice(k,1)[0];S.party.push(m);await say(`${NAME(m)}を よびだした！`);}
     else break;
   }
 }
@@ -1326,34 +1376,39 @@ async function endingScreen(){
   await fade(1,30,3); scene='ending'; Music.play('town'); await fade(0,30,3);
   await waitA();
   await fade(1,20,3); scene='world'; await fade(0,20,3);
-  await say('ここまでが ぼうけんの はじまり です。 あそんで くれて ありがとう！');
-  await say('このあとも モンスターを そだてたり ずかんを うめたり じゆうに あそべます。 ぜんぶで 19しゅるいの モンスターが いるよ！');
+  await say('だいいっしょう「ひだまりの灯」は ここで おしまい。 あそんで くれて ありがとう！');
+  await say('このあとも ヤドリを そだてたり ヤドリちょうを うめたり じゆうに たびが できます。 ヤドリは ぜんぶで 19にん いるよ！');
 }
 function drawEnding(){
   ctx.fillStyle=PAL[3];ctx.fillRect(0,0,W,H);
-  txt('いわのバッジ ゲット！',64,36,0);
-  ctx.drawImage(tint(CH.player.down[0],0),128,72,64,64);
+  txt('だいいっしょう　ひだまりの灯',48,28,0);
+  ctx.drawImage(LANTERN_LIT[(FR>>4)&1],128,60,64,64);
+  ctx.drawImage(tint(CH.player.down[0],0),80,92,32,32);
+  if(S.party[0]) ctx.drawImage(MONIMG_W[S.party[0].sp],208,92,32,32);
   const t=Math.floor(S.time/60);
-  txt(`プレイじかん ${Math.floor(t/3600)}:${String(Math.floor(t/60)%60).padStart(2,'0')}`,72,156,1,FONT_S);
-  txt(`ずかん みつけた ${seenN()} / つかまえた ${caughtN()}`,72,176,1,FONT_S);
-  txt('～ ぼうけんは つづく ～',72,214,0);
-  if(FR%60<40) txt('Aボタンで つづける',96,256,1,FONT_S);
+  txt(`たびの じかん ${Math.floor(t/3600)}:${String(Math.floor(t/60)%60).padStart(2,'0')}`,72,148,1,FONT_S);
+  txt(`ヤドリちょう であった ${seenN()} / ちぎった ${caughtN()}`,64,168,1,FONT_S);
+  txt('～ きりの むこうへ つづく ～',56,210,0);
+  if(FR%60<40) txt('けっていキーで つづける',88,256,1,FONT_S);
 }
 
 // ============================== TITLE / INTRO ==============================
 let TITLE={i:0,t:0};
 function drawTitle(){
-  ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);
-  ctx.fillStyle=PAL[3];ctx.fillRect(0,0,W,88);
-  txt('モンスター',36,12,0,FONT_L);txt('テイマー',100,48,1,FONT_L);
-  txt('みどり バージョン',176,96,2,FONT_S);
+  ctx.fillStyle=PAL[3];ctx.fillRect(0,0,W,H);
+  // night sky with drifting lantern sparks
+  for(let i=0;i<24;i++){const x=(i*53+FR*.3*(1+i%3))%W, y=(H-((i*37+FR*.4*(1+i%2))%H));ctx.fillStyle=PAL[i%2?1:2];ctx.fillRect(Math.floor(x),Math.floor(y),2,2);}
+  txt('ヤドリの灯',72,22,0,FONT_L);
+  txt('― ともしび がたり ―',96,64,1,FONT_S);
+  ctx.fillStyle=PAL[0];ctx.fillRect(0,96,W,128);
   TITLE.t++; if(TITLE.t>150){TITLE.t=0;TITLE.i=(TITLE.i+1)%SP.length;}
   const sp=SP[TITLE.i].id, x=TITLE.t<14?-96+TITLE.t*12:TITLE.t>136?72+(TITLE.t-136)*16:72;
   ctx.drawImage(MONIMG[sp],x,112,96,96);
-  ctx.drawImage(CH.player.down[0],200,148,64,64);
-  ctx.fillStyle=PAL[1];ctx.fillRect(40,210,240,3);
-  if(FR%60<40) txt('Aボタンを おしてね',96,238);
-  txt('ファンメイドの オリジナル ゲーム',72,268,2,FONT_S);
+  ctx.drawImage(CH.player.down[0],200,144,64,64);
+  ctx.drawImage(LANTERN_LIT[(FR>>4)&1],252,112,32,32);
+  ctx.fillStyle=PAL[1];ctx.fillRect(0,220,W,4);
+  if(FR%60<40) txt('けっていキーを おしてね',72,240,0);
+  txt('オリジナル ゲーム ・ だいいっしょう',64,268,1,FONT_S);
 }
 let INTRO={spr:null};
 function drawIntro(){ctx.fillStyle=PAL[0];ctx.fillRect(0,0,W,H);if(INTRO.spr)ctx.drawImage(INTRO.spr,112,48,96,96);}
@@ -1361,7 +1416,7 @@ async function titleFlow(){
   scene='title'; Music.play('town');
   await waitA();
   if(hasSave()){
-    const c=await menu(['つづきから はじめる','さいしょから はじめる'],{x:40,y:120,w:240,cancel:false});
+    const c=await menu(['にっきの つづきから','あたらしく はじめる'],{x:40,y:120,w:240,cancel:false});
     if(c===0){try{S=JSON.parse(localStorage.getItem(SAVE_KEY));}catch(e){S=null;}
       if(S){S.flags=S.flags||{};await fade(1,16,0);loadMap(S.map,S.x,S.y,S.dir);scene='world';await fade(0,16,0);MAP_BANNER.s=MAP.name;MAP_BANNER.t=120;return;}}
   }
@@ -1387,27 +1442,24 @@ async function nameEntry(title,def){
 }
 async function newGame(){
   S=freshState();
-  await fade(1,16,0); scene='intro'; INTRO.spr=CH.prof.down[0]; Music.play('route'); await fade(0,16,0);
-  await say('ようこそ！ モンスターの せかいへ！');
-  await say('わたしの なまえは カシワ。 みんなからは モンスターはかせと よばれて おるよ。');
-  INTRO.spr=MONIMG.pirimaru;
-  await say('この せかいには モンスターと よばれる いきものたちが いたるところに すんでいる！');
-  await say('その モンスターを ペットに する もの… しょうぶに つかう もの… そして わたしは この モンスターの けんきゅうを している というわけだ。');
+  await fade(1,16,0); scene='intro'; INTRO.spr=LANTERN_LIT[0]; Music.play('route'); await fade(0,16,0);
+  await say('うみに うかぶ ちいさな しま。 ここでは ふるい どうぐや しぜんの ものに こころが やどると いわれている。');
+  INTRO.spr=MONIMG.kesaran;
+  await say('ひとびとは その いのちを ヤドリと よび ちぎりを むすんで ともに くらしてきた。');
+  INTRO.spr=MONIMG.chagama;
+  await say('けれど ひとつき まえ… しまの あちこちで ともしびが きえ はじめ しまは しろい きりに つつまれていった。');
   INTRO.spr=CH.player.down[0];
-  await say('では はじめに きみの なまえを おしえて もらおう！',{keep:true}).then(L=>pop(L));
-  let c=await menu(['じぶんで きめる','ユウ','ケイ','ハル'],{x:0,y:0,w:180,cancel:false});
-  S.name=c===0?await nameEntry('あなたの なまえは？','ユウ'):['','ユウ','ケイ','ハル'][c];
-  await say('ふむ… {P}と いうんだな！');
+  await say('この ものがたりの しゅじんこうの なまえは？',{keep:true}).then(L=>pop(L));
+  let c=await menu(['じぶんで きめる','ユウ','アオイ','ハル'],{x:0,y:0,w:180,cancel:false});
+  S.name=c===0?await nameEntry('あなたの なまえは？','ユウ'):['','ユウ','アオイ','ハル'][c];
   INTRO.spr=CH.rival.down[0];
-  await say('こいつは わしの まご。 きみの おさななじみで ライバル でもある。 …えーと なまえは なんと いったかな？',{keep:true}).then(L=>pop(L));
-  c=await menu(['じぶんで きめる','ジン','レン','カイ'],{x:0,y:0,w:180,cancel:false});
-  S.rival=c===0?await nameEntry('ライバルの なまえは？','ジン'):['','ジン','レン','カイ'][c];
-  await say('そうだ そうだ！ おもいだしたぞ！ {R}と いう なまえだ！');
+  await say('となりの かじやの こ。 ちいさい ころから なにかと はりあってくる おさななじみの なまえは？',{keep:true}).then(L=>pop(L));
+  c=await menu(['じぶんで きめる','ミオ','ソラ','ナギ'],{x:0,y:0,w:180,cancel:false});
+  S.rival=c===0?await nameEntry('おさななじみの なまえは？','ミオ'):['','ミオ','ソラ','ナギ'][c];
   INTRO.spr=CH.player.down[0];
-  await say('{P}！ いよいよ これから きみの ものがたりの はじまりだ！');
-  await say('ゆめと ぼうけんと！ モンスターの せかいへ！ レッツゴー！');
+  await say('こよいは ひだまり村の ともしびまつり。 {P}と {R}の たびが いま はじまろうと していた…');
   await fade(1,24,0); loadMap('house1',2,5,'up'); scene='world'; await fade(0,24,0);
-  await say('（メニューは Enterキー か STARTボタン。 しらべる・はなす は Aボタン だよ）');
+  await say('（メニューは Enterキー か MENUボタン。 しらべる・はなす は けっていキー だよ）');
 }
 
 // ============================== MAIN LOOP ==============================
